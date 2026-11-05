@@ -1,0 +1,1726 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#171a2e">
+  <meta name="description" content="后会友期双人旧友默契测试：先留下你的答案，再邀请老朋友来猜，看看你们到底有多了解彼此。">
+  <meta property="og:title" content="后会友期｜双人旧友默契测试">
+  <meta property="og:description" content="一个人先答，另一个人来猜。你们的默契，还停在从前吗？">
+  <title>后会友期｜双人旧友默契测试</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2223%22 fill=%22%23171a2e%22/><path d=%22M24 37c0-7 5-12 12-12s12 5 12 12v26c0 7-5 12-12 12s-12-5-12-12z%22 fill=%22%23ffd454%22/><path d=%22M52 37c0-7 5-12 12-12s12 5 12 12v26c0 7-5 12-12 12s-12-5-12-12z%22 fill=%22%23ff6b5d%22/></svg>">
+  <style>
+    :root {
+      --night: #171a2e;
+      --night-soft: #242842;
+      --cream: #f7f0df;
+      --paper: #fffaf0;
+      --ink: #1a1b24;
+      --muted: #696c78;
+      --red: #ff6258;
+      --red-deep: #db3d39;
+      --yellow: #ffd454;
+      --blue: #91c9ff;
+      --mint: #afe7c0;
+      --pink: #ffb8c9;
+      --line: rgba(26, 27, 36, .15);
+      --shadow: 7px 7px 0 var(--ink);
+      --radius: 27px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      min-height: 100%;
+      background: var(--night);
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 14% 10%, rgba(255, 212, 84, .42) 0 6%, transparent 6.2%),
+        radial-gradient(circle at 90% 12%, rgba(145, 201, 255, .35) 0 8%, transparent 8.2%),
+        radial-gradient(circle at 85% 90%, rgba(255, 98, 88, .25) 0 10%, transparent 10.2%),
+        linear-gradient(135deg, #f7f0df 0%, #fffaf0 48%, #eef4ff 100%);
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      pointer-events: none;
+      opacity: .2;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.91' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+    }
+
+    button, input { font: inherit; }
+    button { color: inherit; }
+    a { color: inherit; }
+
+    button:focus-visible,
+    input:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 18px 18px max(24px, env(safe-area-inset-bottom));
+    }
+
+    .header {
+      display: flex;
+      width: min(1100px, 100%);
+      margin: 0 auto;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .05em;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 43px;
+      height: 43px;
+      place-items: center;
+      border: 2px solid var(--ink);
+      border-radius: 13px;
+      background: var(--night);
+      color: #fff;
+      box-shadow: 3px 3px 0 var(--red);
+      font-size: 15px;
+      font-weight: 950;
+      transform: rotate(-3deg);
+    }
+
+    .brand small {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .13em;
+    }
+
+    .privacy-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      background: rgba(255, 250, 240, .88);
+      padding: 8px 12px;
+      font-size: 10px;
+      font-weight: 850;
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .privacy-pill::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--mint);
+      box-shadow: 0 0 0 1.5px var(--ink);
+    }
+
+    main {
+      display: flex;
+      flex: 1;
+      width: min(1100px, 100%);
+      margin: 0 auto;
+      align-items: center;
+      justify-content: center;
+      padding: 34px 0 40px;
+    }
+
+    .screen {
+      display: none;
+      width: 100%;
+      animation: enter .4s cubic-bezier(.2, .8, .25, 1);
+    }
+
+    .screen.active { display: block; }
+
+    @keyframes enter {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Landing */
+    .landing {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(330px, .88fr);
+      gap: clamp(36px, 6vw, 76px);
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 22px;
+      color: var(--red-deep);
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: .11em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 30px;
+      height: 3px;
+      border-radius: 4px;
+      background: var(--red);
+    }
+
+    .landing h1 {
+      max-width: 700px;
+      margin: 0;
+      font-size: clamp(50px, 8vw, 92px);
+      line-height: .98;
+      letter-spacing: -.075em;
+      font-weight: 950;
+    }
+
+    .landing h1 .accent {
+      position: relative;
+      display: inline-block;
+      z-index: 0;
+    }
+
+    .landing h1 .accent::after {
+      content: "";
+      position: absolute;
+      right: -.04em;
+      bottom: .02em;
+      left: -.04em;
+      height: .32em;
+      border-radius: 8px;
+      background: var(--yellow);
+      transform: rotate(-1.5deg);
+      z-index: -1;
+    }
+
+    .landing h1 .outline {
+      display: block;
+      margin-top: 9px;
+      color: transparent;
+      -webkit-text-stroke: 2px var(--ink);
+      font-size: .64em;
+      letter-spacing: -.05em;
+      line-height: 1.15;
+    }
+
+    .lede {
+      max-width: 590px;
+      margin: 25px 0 0;
+      color: #51545e;
+      font-size: clamp(15px, 1.9vw, 18px);
+      line-height: 1.85;
+      font-weight: 550;
+    }
+
+    .lede strong {
+      color: var(--ink);
+      font-weight: 900;
+      box-shadow: inset 0 -.5em rgba(255, 212, 84, .62);
+    }
+
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .step {
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      background: rgba(255, 250, 240, .9);
+      padding: 7px 10px;
+      font-size: 10px;
+      font-weight: 850;
+    }
+
+    .start-card {
+      position: relative;
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      border-radius: var(--radius);
+      background: var(--paper);
+      padding: clamp(24px, 4vw, 35px);
+      box-shadow: var(--shadow);
+    }
+
+    .start-card::before {
+      content: "↗";
+      position: absolute;
+      top: -24px;
+      right: 24px;
+      color: var(--red);
+      font-size: 92px;
+      font-weight: 300;
+      opacity: .24;
+      transform: rotate(10deg);
+    }
+
+    .card-kicker {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 18px;
+      border-bottom: 1.5px dashed var(--ink);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+
+    .card-kicker span:last-child {
+      color: var(--red-deep);
+    }
+
+    .pair-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 22px 0 18px;
+    }
+
+    .avatar {
+      display: grid;
+      width: 55px;
+      height: 55px;
+      place-items: center;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      background: var(--avatar, var(--yellow));
+      box-shadow: 2px 2px 0 var(--ink);
+      font-size: 20px;
+      font-weight: 950;
+    }
+
+    .thread {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .thread i {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+
+    .thread b {
+      width: 34px;
+      height: 2px;
+      background: repeating-linear-gradient(90deg, var(--ink) 0 4px, transparent 4px 7px);
+    }
+
+    .start-card h2 {
+      margin: 0 0 7px;
+      font-size: 26px;
+      line-height: 1.25;
+      letter-spacing: -.045em;
+      font-weight: 950;
+    }
+
+    .start-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+      font-weight: 600;
+    }
+
+    .field-label {
+      display: block;
+      margin: 20px 0 8px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .name-input {
+      width: 100%;
+      border: 1.5px solid var(--ink);
+      border-radius: 13px;
+      background: #fff;
+      padding: 13px 14px;
+      color: var(--ink);
+      font-size: 15px;
+      transition: box-shadow .15s, transform .15s;
+    }
+
+    .name-input::placeholder { color: #989aa3; }
+
+    .name-input:focus {
+      outline: 0;
+      box-shadow: 4px 4px 0 var(--blue);
+      transform: translate(-1px, -1px);
+    }
+
+    .primary,
+    .secondary,
+    .share {
+      width: 100%;
+      min-height: 53px;
+      border: 2px solid var(--ink);
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-weight: 950;
+      cursor: pointer;
+      transition: transform .14s, box-shadow .14s, background .14s;
+    }
+
+    .primary {
+      margin-top: 16px;
+      background: var(--red);
+      color: #fff;
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .primary:hover,
+    .share:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0 var(--ink);
+    }
+
+    .primary:active,
+    .secondary:active,
+    .share:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+
+    .fine-print {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    /* Quiz */
+    .quiz-wrap {
+      width: min(760px, 100%);
+      margin: 0 auto;
+    }
+
+    .quiz-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .back {
+      display: grid;
+      flex: 0 0 auto;
+      width: 41px;
+      height: 41px;
+      place-items: center;
+      border: 1.5px solid var(--ink);
+      border-radius: 50%;
+      background: var(--paper);
+      box-shadow: 2px 2px 0 var(--ink);
+      cursor: pointer;
+      font-size: 19px;
+    }
+
+    .back:disabled { visibility: hidden; }
+
+    .progress-wrap { flex: 1; }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 7px;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .progress-meta span:last-child { color: var(--red-deep); }
+
+    .progress-track {
+      height: 10px;
+      overflow: hidden;
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      background: var(--paper);
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      border-right: 1.5px solid var(--ink);
+      border-radius: inherit;
+      background: var(--red);
+      transition: width .34s cubic-bezier(.22, .8, .24, 1);
+    }
+
+    .question-card {
+      position: relative;
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      border-radius: 25px;
+      background: var(--paper);
+      padding: clamp(23px, 5vw, 40px);
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+
+    .question-card::after {
+      content: attr(data-number);
+      position: absolute;
+      right: 19px;
+      top: 8px;
+      color: var(--red);
+      font-size: 90px;
+      line-height: 1;
+      font-weight: 950;
+      opacity: .08;
+      pointer-events: none;
+    }
+
+    .quiz-label {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 18px;
+      color: var(--red-deep);
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: .08em;
+    }
+
+    .quiz-label::before {
+      content: "●";
+      font-size: 7px;
+    }
+
+    .question-title {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 23px;
+      font-size: clamp(23px, 4.7vw, 34px);
+      line-height: 1.4;
+      letter-spacing: -.04em;
+      font-weight: 950;
+    }
+
+    .answers { display: grid; gap: 9px; }
+
+    .answer {
+      display: grid;
+      grid-template-columns: 30px 1fr 20px;
+      gap: 11px;
+      align-items: center;
+      width: 100%;
+      min-height: 57px;
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      padding: 10px 13px;
+      text-align: left;
+      cursor: pointer;
+      transition: transform .15s, border-color .15s, background .15s, box-shadow .15s;
+    }
+
+    .answer:hover {
+      border-color: var(--ink);
+      background: var(--cream);
+      transform: translateX(3px);
+    }
+
+    .answer.selected {
+      border: 2px solid var(--ink);
+      background: var(--yellow);
+      box-shadow: 3px 3px 0 var(--ink);
+      transform: translate(-2px, -2px);
+    }
+
+    .answer-letter {
+      display: grid;
+      width: 28px;
+      height: 28px;
+      place-items: center;
+      border: 1.5px solid var(--ink);
+      border-radius: 9px;
+      background: var(--paper);
+      font-size: 11px;
+      font-weight: 950;
+    }
+
+    .answer-text {
+      font-size: 14px;
+      line-height: 1.55;
+      font-weight: 700;
+    }
+
+    .answer-check {
+      display: grid;
+      width: 20px;
+      height: 20px;
+      place-items: center;
+      border: 1.5px solid var(--ink);
+      border-radius: 50%;
+      background: var(--paper);
+      font-size: 11px;
+      font-weight: 950;
+      opacity: 0;
+      transform: scale(.5);
+      transition: opacity .15s, transform .15s;
+    }
+
+    .answer.selected .answer-check {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .quiz-note {
+      margin-top: 13px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    /* Invite */
+    .invite-wrap {
+      width: min(780px, 100%);
+      margin: 0 auto;
+    }
+
+    .invite-card {
+      position: relative;
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      border-radius: 30px;
+      background: var(--paper);
+      padding: clamp(26px, 5vw, 44px);
+      box-shadow: 8px 8px 0 var(--ink);
+    }
+
+    .invite-card::before {
+      content: "×";
+      position: absolute;
+      right: 33px;
+      top: -22px;
+      color: var(--red);
+      font-size: 164px;
+      line-height: 1;
+      opacity: .1;
+      transform: rotate(11deg);
+      pointer-events: none;
+    }
+
+    .sealed {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      background: var(--mint);
+      padding: 7px 11px;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .sealed::before { content: "✓"; }
+
+    .invite-card h2 {
+      position: relative;
+      z-index: 1;
+      margin: 23px 0 8px;
+      font-size: clamp(37px, 7vw, 62px);
+      line-height: 1.1;
+      letter-spacing: -.06em;
+      font-weight: 950;
+    }
+
+    .invite-card > p {
+      position: relative;
+      z-index: 1;
+      max-width: 610px;
+      margin: 0;
+      color: #535660;
+      font-size: 15px;
+      line-height: 1.75;
+      font-weight: 550;
+    }
+
+    .invite-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+      margin: 24px 0;
+    }
+
+    .mini-stat {
+      border: 1.5px solid var(--ink);
+      border-radius: 15px;
+      background: var(--cream);
+      padding: 14px;
+    }
+
+    .mini-stat b {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 20px;
+      font-weight: 950;
+    }
+
+    .mini-stat span {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .invite-url {
+      width: 100%;
+      min-height: 80px;
+      resize: none;
+      border: 1.5px solid var(--ink);
+      border-radius: 14px;
+      background: #fff;
+      padding: 12px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.5;
+      word-break: break-all;
+    }
+
+    .action-grid {
+      display: grid;
+      grid-template-columns: 1fr .78fr;
+      gap: 11px;
+      margin-top: 14px;
+    }
+
+    .share {
+      background: var(--night);
+      color: #fff;
+      box-shadow: 4px 4px 0 var(--red);
+    }
+
+    .secondary {
+      background: var(--paper);
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    /* Guess intro */
+    .guess-intro-wrap {
+      width: min(740px, 100%);
+      margin: 0 auto;
+    }
+
+    .guess-card {
+      position: relative;
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      border-radius: 31px;
+      background: var(--paper);
+      padding: clamp(28px, 5vw, 47px);
+      box-shadow: 8px 8px 0 var(--ink);
+    }
+
+    .guess-card::after {
+      content: "?";
+      position: absolute;
+      right: 20px;
+      top: -52px;
+      color: var(--yellow);
+      font-size: 260px;
+      line-height: 1;
+      font-weight: 950;
+      -webkit-text-stroke: 2px var(--ink);
+      opacity: .34;
+      transform: rotate(8deg);
+      pointer-events: none;
+    }
+
+    .sender {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      background: var(--blue);
+      padding: 7px 11px;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .guess-card h2 {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 25px 0 10px;
+      font-size: clamp(39px, 7vw, 67px);
+      line-height: 1.07;
+      letter-spacing: -.065em;
+      font-weight: 950;
+    }
+
+    .guess-card p {
+      position: relative;
+      z-index: 1;
+      max-width: 590px;
+      margin: 0;
+      color: #50545e;
+      font-size: 15px;
+      line-height: 1.75;
+      font-weight: 550;
+    }
+
+    /* Result */
+    .result-wrap {
+      width: min(850px, 100%);
+      margin: 0 auto;
+    }
+
+    .result-card {
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      border-radius: 31px;
+      background: var(--paper);
+      box-shadow: 8px 8px 0 var(--ink);
+    }
+
+    .result-hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 310px;
+      border-bottom: 2px solid var(--ink);
+      padding: clamp(27px, 5vw, 46px);
+      background: var(--result-color, var(--yellow));
+    }
+
+    .result-hero::after {
+      content: attr(data-heart);
+      position: absolute;
+      right: 3%;
+      bottom: -42px;
+      font-size: clamp(170px, 28vw, 245px);
+      line-height: 1;
+      opacity: .12;
+      transform: rotate(7deg);
+      pointer-events: none;
+    }
+
+    .result-kicker {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      background: var(--paper);
+      padding: 7px 11px;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .06em;
+    }
+
+    .result-kicker::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 0 1.5px var(--ink);
+    }
+
+    .score-line {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      margin: 22px 0 4px;
+    }
+
+    .score-number {
+      font-size: clamp(80px, 17vw, 138px);
+      line-height: .83;
+      letter-spacing: -.085em;
+      font-weight: 950;
+    }
+
+    .score-unit {
+      margin-bottom: 7px;
+      font-size: 25px;
+      font-weight: 950;
+    }
+
+    .result-grade {
+      position: relative;
+      z-index: 1;
+      display: block;
+      margin-top: 13px;
+      font-size: clamp(27px, 4.5vw, 40px);
+      line-height: 1.22;
+      letter-spacing: -.045em;
+      font-weight: 950;
+    }
+
+    .result-tagline {
+      position: relative;
+      z-index: 1;
+      max-width: 610px;
+      margin: 9px 0 0;
+      font-size: 15px;
+      line-height: 1.65;
+      font-weight: 700;
+    }
+
+    .result-body {
+      padding: clamp(24px, 5vw, 42px);
+    }
+
+    .result-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+      margin-bottom: 23px;
+    }
+
+    .summary-box {
+      border: 1.5px solid var(--ink);
+      border-radius: 15px;
+      background: var(--cream);
+      padding: 13px;
+      text-align: center;
+    }
+
+    .summary-box b {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 22px;
+      font-weight: 950;
+    }
+
+    .summary-box span {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .review-title {
+      margin: 0 0 12px;
+      font-size: 13px;
+      font-weight: 950;
+    }
+
+    .review-list {
+      overflow: hidden;
+      border: 1.5px solid var(--ink);
+      border-radius: 17px;
+      background: #fff;
+    }
+
+    .review-row {
+      display: grid;
+      grid-template-columns: 29px 1fr auto;
+      gap: 11px;
+      align-items: center;
+      padding: 12px 13px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .review-row:last-child { border-bottom: 0; }
+
+    .review-icon {
+      display: grid;
+      width: 27px;
+      height: 27px;
+      place-items: center;
+      border: 1.5px solid var(--ink);
+      border-radius: 50%;
+      background: var(--review-color, var(--mint));
+      font-size: 12px;
+      font-weight: 950;
+    }
+
+    .review-text {
+      min-width: 0;
+    }
+
+    .review-question {
+      display: block;
+      overflow: hidden;
+      margin-bottom: 3px;
+      font-size: 12px;
+      font-weight: 850;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .review-answer {
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.45;
+      font-weight: 650;
+    }
+
+    .review-mark {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .result-actions {
+      display: grid;
+      grid-template-columns: 1fr .72fr;
+      gap: 11px;
+      margin-top: 19px;
+    }
+
+    .result-fineprint {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 60;
+      bottom: max(24px, env(safe-area-inset-bottom));
+      left: 50%;
+      width: max-content;
+      max-width: calc(100vw - 32px);
+      border: 2px solid var(--ink);
+      border-radius: 12px;
+      background: var(--night);
+      color: #fff;
+      padding: 11px 16px;
+      font-size: 12px;
+      font-weight: 850;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 14px);
+      transition: opacity .2s, transform .2s;
+    }
+
+    .toast.visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    footer {
+      display: flex;
+      width: min(1100px, 100%);
+      margin: 0 auto;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 650;
+    }
+
+    @media (max-width: 760px) {
+      .page { padding: 15px 13px max(18px, env(safe-area-inset-bottom)); }
+      .privacy-pill { display: none; }
+      main { align-items: flex-start; padding: 39px 0 34px; }
+      .landing { grid-template-columns: 1fr; gap: 40px; }
+      .landing h1 { font-size: clamp(49px, 15.5vw, 74px); }
+      .landing h1 .outline { font-size: .58em; margin-top: 12px; }
+      .steps { display: none; }
+      .start-card { box-shadow: 5px 5px 0 var(--ink); }
+      .question-card {
+        padding: 22px 17px 24px;
+        border-radius: 20px;
+        box-shadow: 4px 4px 0 var(--ink);
+      }
+      .question-title { font-size: clamp(22px, 6.4vw, 30px); }
+      .answer {
+        grid-template-columns: 28px 1fr 19px;
+        gap: 9px;
+        min-height: 54px;
+        padding: 9px;
+      }
+      .answer-text { font-size: 13px; }
+      .invite-card, .guess-card, .result-card {
+        border-radius: 23px;
+        box-shadow: 5px 5px 0 var(--ink);
+      }
+      .invite-summary, .result-summary { gap: 6px; }
+      .mini-stat, .summary-box { padding: 11px 7px; }
+      .action-grid, .result-actions { grid-template-columns: 1fr; }
+      .result-hero { min-height: 295px; }
+      .result-body { padding: 23px 18px 21px; }
+      footer { justify-content: center; text-align: center; }
+      footer span:last-child { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="brand">
+        <span class="brand-mark">双</span>
+        <span>后会友期 · 双人默契<small>TWO-PERSON FRIENDSHIP QUIZ</small></span>
+      </div>
+      <span class="privacy-pill">只存在链接里 · 不上传答案</span>
+    </header>
+
+    <main>
+      <section class="screen active" id="landingScreen" aria-labelledby="landingTitle">
+        <div class="landing">
+          <div>
+            <span class="eyebrow">非官方粉丝向 · 双人互动测试</span>
+            <h1 id="landingTitle">
+              <span>你有多了解</span>
+              <span><span class="accent">你的老朋友</span>？</span>
+              <span class="outline">一个人先答，另一个人来猜</span>
+            </h1>
+            <p class="lede">
+              有些默契不需要天天联系，但一到选择题就会露馅。留下你的 10 个答案，生成专属邀请链接，<strong>看看老朋友能猜中多少。</strong>
+            </p>
+            <div class="steps" aria-label="测试流程">
+              <span class="step">01 你先作答</span>
+              <span class="step">02 发给老朋友</span>
+              <span class="step">03 对方猜你的答案</span>
+              <span class="step">04 查看默契结果</span>
+            </div>
+          </div>
+
+          <div class="start-card">
+            <div class="card-kicker">
+              <span>FRIENDSHIP CHECK</span>
+              <span>10 QUESTIONS</span>
+            </div>
+            <div class="pair-visual" aria-hidden="true">
+              <span class="avatar" style="--avatar:var(--yellow)">你</span>
+              <span class="thread"><i></i><b></b><i></i></span>
+              <span class="avatar" style="--avatar:var(--blue)">友</span>
+            </div>
+            <h2>先留下你的答案</h2>
+            <p>完成后再发给那位“应该很懂你”的旧朋友。</p>
+            <label class="field-label" for="ownerName">你的昵称</label>
+            <input class="name-input" id="ownerName" type="text" maxlength="12" autocomplete="nickname" placeholder="比如：小橙">
+            <button class="primary" id="startCreate" type="button">生成我的默契卷 →</button>
+            <p class="fine-print">答案会编码进专属链接，不会发送到服务器。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="quizScreen" aria-labelledby="questionTitle">
+        <div class="quiz-wrap">
+          <div class="quiz-top">
+            <button class="back" id="backButton" type="button" aria-label="上一题">←</button>
+            <div class="progress-wrap">
+              <div class="progress-meta">
+                <span id="progressLabel">第 1 题 / 10</span>
+                <span id="progressPercent">0%</span>
+              </div>
+              <div class="progress-track" id="progressTrack" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+            </div>
+          </div>
+          <div class="question-card" id="questionCard" data-number="01">
+            <div class="quiz-label" id="quizLabel">我的真实答案</div>
+            <h2 class="question-title" id="questionTitle"></h2>
+            <div class="answers" id="answers"></div>
+          </div>
+          <p class="quiz-note" id="quizNote">选第一反应，别提前给朋友放水。</p>
+        </div>
+      </section>
+
+      <section class="screen" id="inviteScreen" aria-labelledby="inviteTitle">
+        <div class="invite-wrap">
+          <article class="invite-card">
+            <span class="sealed">10 个答案已封存</span>
+            <h2 id="inviteTitle">默契卷做好了</h2>
+            <p id="inviteCopy">把下面的专属链接发给老朋友。对方看不到你的答案，只能凭对你的了解来猜。</p>
+            <div class="invite-summary">
+              <div class="mini-stat"><b id="inviteName">你</b><span>发起人</span></div>
+              <div class="mini-stat"><b>10</b><span>道旧友选择题</span></div>
+              <div class="mini-stat"><b>2 min</b><span>对方完成时间</span></div>
+            </div>
+            <label class="field-label" for="inviteUrl">专属邀请链接</label>
+            <textarea class="invite-url" id="inviteUrl" readonly></textarea>
+            <div class="action-grid">
+              <button class="share" id="copyInvite" type="button">复制链接，发给老朋友 ↗</button>
+              <button class="secondary" id="previewFriend" type="button">预览好友视角</button>
+            </div>
+            <p class="fine-print">拿到链接的人都能参与，不要把链接公开发到无关群聊。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="screen" id="guessIntroScreen" aria-labelledby="guessTitle">
+        <div class="guess-intro-wrap">
+          <article class="guess-card">
+            <span class="sender" id="senderLabel">老朋友发来一张默契卷</span>
+            <h2 id="guessTitle">猜猜 TA 会怎么选？</h2>
+            <p>这里有 10 道关于旅行、聊天、边界和重逢的选择题。你不需要回答自己会怎么选，只需要猜：<strong id="guessOwnerName">TA</strong> 会怎么选。</p>
+            <button class="primary" id="startGuess" type="button">开始猜答案 →</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="screen" id="resultScreen" aria-labelledby="resultGrade">
+        <div class="result-wrap">
+          <article class="result-card">
+            <div class="result-hero" id="resultHero" data-heart="♥">
+              <span class="result-kicker" id="resultKicker">你们的旧友默契结果</span>
+              <div class="score-line">
+                <span class="score-number" id="scoreNumber">0</span>
+                <span class="score-unit">%</span>
+              </div>
+              <span class="result-grade" id="resultGrade"></span>
+              <p class="result-tagline" id="resultTagline"></p>
+            </div>
+            <div class="result-body">
+              <div class="result-summary">
+                <div class="summary-box"><b id="correctCount">0/10</b><span>猜中答案</span></div>
+                <div class="summary-box"><b id="ownerLabel">TA</b><span>试卷主人</span></div>
+                <div class="summary-box"><b id="relationAge">旧友</b><span>关系类型</span></div>
+              </div>
+              <h3 class="review-title">逐题对照</h3>
+              <div class="review-list" id="reviewList"></div>
+              <div class="result-actions">
+                <button class="share" id="shareResult" type="button">把默契结果发回去 ↗</button>
+                <button class="secondary" id="createMine" type="button">我也发起一份</button>
+              </div>
+              <p class="result-fineprint">结果只用于娱乐。人会变，答案也会变；愿意重新认识，比全猜中更重要。</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>后会友期 · 非官方粉丝向双人测试</span>
+      <span>MISS YOU, STILL KNOW YOU?</span>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const QUESTIONS = [
+      {
+        text: "旅行途中突然下起大雨，我会？",
+        options: [
+          "先找一家咖啡馆，听雨顺便聊天",
+          "买件雨衣，按原计划继续走",
+          "回酒店窝着，把没聊完的话聊完",
+          "先拍照发群，淋雨也要留下证据"
+        ]
+      },
+      {
+        text: "朋友深夜只发来一句「在吗」，我会？",
+        options: [
+          "秒回：我在，怎么了？",
+          "直接打电话，怕打字说不清",
+          "先等对方组织语言，不催",
+          "回个表情包：请开始你的表演"
+        ]
+      },
+      {
+        text: "约好的老朋友聚会临时取消，我会？",
+        options: [
+          "先问朋友是不是遇到事情了",
+          "立刻改约一个确定的新时间",
+          "嘴上说没关系，自己默默失落",
+          "调侃对方放鸽子，回头再算账"
+        ]
+      },
+      {
+        text: "一起旅行时，我更想负责？",
+        options: [
+          "情绪和氛围，别让谁被冷落",
+          "路线和行动，保证事情顺利",
+          "账目和边界，提前说清楚",
+          "拍照和名场面，给以后留证据"
+        ]
+      },
+      {
+        text: "最能让我对老朋友失望的是？",
+        options: [
+          "情绪不被回应，总像在自言自语",
+          "真正需要的时候完全找不到人",
+          "承诺很多次，却一次次落空",
+          "玩笑没有分寸，只拿我取乐"
+        ]
+      },
+      {
+        text: "关系出现裂痕时，我通常会？",
+        options: [
+          "先主动联系，不想一直耗着",
+          "需要对方先给一个明确态度",
+          "安静观察，不勉强任何人",
+          "见面聊一场，比线上拉扯有用"
+        ]
+      },
+      {
+        text: "我认为最好的重逢方式是？",
+        options: [
+          "好好吃一顿，把近况聊透",
+          "说走就走，一起做件具体的事",
+          "不用寒暄，安静坐着也自在",
+          "先互损十分钟，确认熟悉感还在"
+        ]
+      },
+      {
+        text: "如果老朋友变了，我最在意？",
+        options: [
+          "还愿不愿意分享真实情绪",
+          "还能不能互相托住现实问题",
+          "还尊不尊重彼此的边界",
+          "还能不能接住彼此的玩笑"
+        ]
+      },
+      {
+        text: "旧朋友迟迟没回消息，我会？",
+        options: [
+          "有点担心，会问是不是出事了",
+          "直接再问一次，猜来猜去更烦",
+          "理解大家都有各自的生活",
+          "发张梗图提醒：失踪人口回归"
+        ]
+      },
+      {
+        text: "我心里最理想的朋友关系是？",
+        options: [
+          "有人认真听你说，也记得回应",
+          "有事一句就到，行动胜过客套",
+          "久不联系，也不会互相猜疑",
+          "见面互损，分开又真的惦记"
+        ]
+      }
+    ];
+
+    const GRADES = [
+      {
+        min: 9,
+        label: "灵魂存档没丢",
+        color: "#ffd454",
+        heart: "♥",
+        line: "你们对彼此的默认设置，还停在很熟的那一页。"
+      },
+      {
+        min: 7,
+        label: "老朋友还在线",
+        color: "#afe7c0",
+        heart: "✦",
+        line: "大部分频道还接得上，偶尔一点偏差，反而证明大家都长大了。"
+      },
+      {
+        min: 5,
+        label: "熟悉，也有新版本",
+        color: "#91c9ff",
+        heart: "◐",
+        line: "你记得从前的 TA，也开始看见现在的 TA。关系还有继续更新的空间。"
+      },
+      {
+        min: 3,
+        label: "需要一次认真重逢",
+        color: "#ffb8c9",
+        heart: "△",
+        line: "你们之间不是没默契，只是太久没有重新对答案了。"
+      },
+      {
+        min: 0,
+        label: "同名不同册的旧友",
+        color: "#e4ded2",
+        heart: "?",
+        line: "猜错不等于不在乎，也许你们只是都在用新的方式长大。"
+      }
+    ];
+
+    const screens = {
+      landing: document.getElementById("landingScreen"),
+      quiz: document.getElementById("quizScreen"),
+      invite: document.getElementById("inviteScreen"),
+      guessIntro: document.getElementById("guessIntroScreen"),
+      result: document.getElementById("resultScreen")
+    };
+
+    const state = {
+      role: "owner",
+      ownerName: "",
+      ownerAnswers: null,
+      guessAnswers: Array(QUESTIONS.length).fill(null),
+      step: 0,
+      inviteUrl: "",
+      advancing: false,
+      resultFromLink: false
+    };
+
+    const $ = id => document.getElementById(id);
+    const answersEl = $("answers");
+    const toast = $("toast");
+    let toastTimer = null;
+
+    function encodePayload(value) {
+      const bytes = new TextEncoder().encode(JSON.stringify(value));
+      let binary = "";
+      bytes.forEach(byte => { binary += String.fromCharCode(byte); });
+      return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+    }
+
+    function decodePayload(value) {
+      try {
+        const padded = value.replace(/-/g, "+").replace(/_/g, "/") + "=".repeat((4 - value.length % 4) % 4);
+        const binary = atob(padded);
+        const bytes = Uint8Array.from(binary, character => character.charCodeAt(0));
+        return JSON.parse(new TextDecoder().decode(bytes));
+      } catch (_) {
+        return null;
+      }
+    }
+
+    function showScreen(name) {
+      Object.entries(screens).forEach(([key, element]) => {
+        element.classList.toggle("active", key === name);
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function showToast(message) {
+      clearTimeout(toastTimer);
+      toast.textContent = message;
+      toast.classList.add("visible");
+      toastTimer = setTimeout(() => toast.classList.remove("visible"), 2200);
+    }
+
+    function safeName(value) {
+      return String(value || "").trim().slice(0, 12).replace(/[<>&"']/g, "");
+    }
+
+    function startOwner() {
+      const name = safeName($("ownerName").value);
+      if (!name) {
+        showToast("先留一个昵称，老朋友才知道是谁发的");
+        $("ownerName").focus();
+        return;
+      }
+      state.role = "owner";
+      state.ownerName = name;
+      state.ownerAnswers = Array(QUESTIONS.length).fill(null);
+      state.step = 0;
+      renderQuestion();
+      showScreen("quiz");
+    }
+
+    function startGuess() {
+      state.role = "guest";
+      state.step = 0;
+      state.guessAnswers = Array(QUESTIONS.length).fill(null);
+      renderQuestion();
+      showScreen("quiz");
+    }
+
+    function currentAnswer() {
+      return state.role === "owner"
+        ? state.ownerAnswers[state.step]
+        : state.guessAnswers[state.step];
+    }
+
+    function renderQuestion() {
+      const question = QUESTIONS[state.step];
+      const selected = currentAnswer();
+      const answers = state.role === "owner" ? state.ownerAnswers : state.guessAnswers;
+      const completed = answers.filter(value => value !== null && value !== undefined).length;
+      const percent = Math.round(completed / QUESTIONS.length * 100);
+
+      $("progressLabel").textContent = `第 ${state.step + 1} 题 / ${QUESTIONS.length}`;
+      $("progressPercent").textContent = `${percent}%`;
+      $("progressFill").style.width = `${percent}%`;
+      $("progressTrack").setAttribute("aria-valuenow", String(percent));
+      $("progressTrack").setAttribute("aria-label", `已完成 ${completed} / ${QUESTIONS.length} 题`);
+      $("backButton").disabled = state.step === 0;
+      $("questionCard").dataset.number = String(state.step + 1).padStart(2, "0");
+      $("quizLabel").textContent = state.role === "owner"
+        ? "我的真实答案"
+        : `猜猜 ${state.ownerName} 会选`;
+      $("questionTitle").textContent = question.text;
+      $("quizNote").textContent = state.role === "owner"
+        ? "选第一反应，别提前给朋友放水。"
+        : "现在回答的是 TA 的选择，不是你的选择。";
+      answersEl.innerHTML = "";
+
+      question.options.forEach((option, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `answer${selected === index ? " selected" : ""}`;
+        button.setAttribute("aria-pressed", selected === index ? "true" : "false");
+        button.innerHTML = `
+          <span class="answer-letter">${String.fromCharCode(65 + index)}</span>
+          <span class="answer-text">${option}</span>
+          <span class="answer-check" aria-hidden="true">✓</span>
+        `;
+        button.addEventListener("click", () => answerQuestion(index, button));
+        answersEl.appendChild(button);
+      });
+    }
+
+    function answerQuestion(index, button) {
+      if (state.advancing) return;
+      const answers = state.role === "owner" ? state.ownerAnswers : state.guessAnswers;
+      answers[state.step] = index;
+
+      Array.from(answersEl.children).forEach(element => {
+        element.classList.remove("selected");
+        element.setAttribute("aria-pressed", "false");
+      });
+      button.classList.add("selected");
+      button.setAttribute("aria-pressed", "true");
+
+      const completed = answers.filter(value => value !== null && value !== undefined).length;
+      const percent = Math.round(completed / QUESTIONS.length * 100);
+      $("progressPercent").textContent = `${percent}%`;
+      $("progressFill").style.width = `${percent}%`;
+      $("progressTrack").setAttribute("aria-valuenow", String(percent));
+      $("progressTrack").setAttribute("aria-label", `已完成 ${completed} / ${QUESTIONS.length} 题`);
+
+      state.advancing = true;
+      setTimeout(() => {
+        state.advancing = false;
+        if (state.step < QUESTIONS.length - 1) {
+          state.step += 1;
+          renderQuestion();
+          return;
+        }
+        if (state.role === "owner") {
+          showInvite();
+        } else {
+          showGuessResult();
+        }
+      }, 280);
+    }
+
+    function showInvite() {
+      const payload = {
+        v: 1,
+        n: state.ownerName,
+        a: state.ownerAnswers.join("")
+      };
+      const base = `${location.origin}${location.pathname}`;
+      state.inviteUrl = `${base}#d=${encodePayload(payload)}`;
+      $("inviteName").textContent = state.ownerName;
+      $("inviteCopy").textContent = `${state.ownerName} 的 10 个答案已经封存。把链接发给老朋友，让对方凭对你的了解来猜。`;
+      $("inviteUrl").value = state.inviteUrl;
+      showScreen("invite");
+    }
+
+    function resultForLink(payload) {
+      const owner = String(payload.a || "").slice(0, QUESTIONS.length);
+      const guesses = String(payload.g || "").slice(0, QUESTIONS.length);
+      if (owner.length !== QUESTIONS.length || guesses.length !== QUESTIONS.length) return;
+      state.ownerName = safeName(payload.n) || "TA";
+      state.ownerAnswers = owner.split("").map(Number);
+      state.guessAnswers = guesses.split("").map(Number);
+      renderResult();
+    }
+
+    function showGuessResult() {
+      const payload = {
+        v: 1,
+        n: state.ownerName,
+        a: state.ownerAnswers.join(""),
+        g: state.guessAnswers.join("")
+      };
+      const base = `${location.origin}${location.pathname}`;
+      const resultUrl = `${base}#r=${encodePayload(payload)}`;
+      history.replaceState({}, "", resultUrl);
+      renderResult();
+    }
+
+    function renderResult() {
+      const correct = state.ownerAnswers.reduce((sum, answer, index) => sum + (answer === state.guessAnswers[index] ? 1 : 0), 0);
+      const score = correct * 10;
+      const grade = GRADES.find(item => correct >= item.min) || GRADES[GRADES.length - 1];
+      const name = state.ownerName || "TA";
+
+      $("scoreNumber").textContent = String(score);
+      $("resultGrade").textContent = grade.label;
+      $("resultTagline").textContent = grade.line;
+      $("resultHero").style.setProperty("--result-color", grade.color);
+      $("resultHero").dataset.heart = grade.heart;
+      $("resultKicker").textContent = `${name} × 你 · 双人旧友默契结果`;
+      $("correctCount").textContent = `${correct}/10`;
+      $("ownerLabel").textContent = name;
+      $("relationAge").textContent = correct >= 7 ? "很熟" : correct >= 4 ? "旧友" : "待更新";
+
+      $("reviewList").innerHTML = QUESTIONS.map((question, index) => {
+        const inferred = state.guessAnswers[index];
+        const actual = state.ownerAnswers[index];
+        const hit = inferred === actual;
+        return `
+          <div class="review-row">
+            <span class="review-icon" style="--review-color:${hit ? "var(--mint)" : "var(--pink)"}">${hit ? "✓" : "×"}</span>
+            <span class="review-text">
+              <span class="review-question">${index + 1}. ${question.text}</span>
+              <span class="review-answer">你猜 ${String.fromCharCode(65 + inferred)} · ${question.options[inferred]}<br>${name} 选 ${String.fromCharCode(65 + actual)} · ${question.options[actual]}</span>
+            </span>
+            <span class="review-mark">${hit ? "命中" : "偏差"}</span>
+          </div>
+        `;
+      }).join("");
+
+      showScreen("result");
+    }
+
+    async function copyText(value) {
+      try {
+        await navigator.clipboard.writeText(value);
+        return true;
+      } catch (_) {
+        const area = document.createElement("textarea");
+        area.value = value;
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        const copied = document.execCommand("copy");
+        area.remove();
+        return copied;
+      }
+    }
+
+    async function shareLink(value, title, text) {
+      if (navigator.share) {
+        try {
+          await navigator.share({ title, text, url: value });
+          return;
+        } catch (error) {
+          if (error && error.name === "AbortError") return;
+        }
+      }
+      const copied = await copyText(`${text}\n${value}`);
+      showToast(copied ? "文案和链接已复制" : "链接已生成");
+    }
+
+    function goBack() {
+      if (state.step === 0 || state.advancing) return;
+      state.step -= 1;
+      renderQuestion();
+    }
+
+    $("startCreate").addEventListener("click", startOwner);
+    $("ownerName").addEventListener("keydown", event => {
+      if (event.key === "Enter") startOwner();
+    });
+    $("backButton").addEventListener("click", goBack);
+    $("startGuess").addEventListener("click", startGuess);
+    $("copyInvite").addEventListener("click", () => {
+      shareLink(
+        state.inviteUrl,
+        "后会友期双人旧友默契测试",
+        `${state.ownerName} 给你发来一张旧友默契卷：猜猜我会怎么选？`
+      );
+    });
+    $("previewFriend").addEventListener("click", () => {
+      window.open(state.inviteUrl, "_blank", "noopener");
+    });
+    $("shareResult").addEventListener("click", () => {
+      const resultUrl = location.href;
+      const correct = state.ownerAnswers.reduce((sum, answer, index) => sum + (answer === state.guessAnswers[index] ? 1 : 0), 0);
+      shareLink(
+        resultUrl,
+        "我们的后会友期默契结果",
+        `我猜中了 ${state.ownerName} ${correct}/10 个答案，快看看我们的默契结果。`
+      );
+    });
+    $("createMine").addEventListener("click", () => {
+      history.replaceState({}, "", location.pathname);
+      state.role = "owner";
+      state.ownerAnswers = null;
+      state.guessAnswers = Array(QUESTIONS.length).fill(null);
+      state.step = 0;
+      $("ownerName").value = "";
+      showScreen("landing");
+    });
+
+    document.addEventListener("keydown", event => {
+      if (!screens.quiz.classList.contains("active") || state.advancing) return;
+      const index = ["A", "B", "C", "D"].indexOf(event.key.toUpperCase());
+      if (index >= 0) answersEl.children[index]?.click();
+    });
+
+    function validAnswers(value) {
+      const answers = String(value || "");
+      return answers.length === QUESTIONS.length && /^[0-3]+$/.test(answers);
+    }
+
+    function routeFromHash() {
+      const hashParams = new URLSearchParams(location.hash.replace(/^#/, ""));
+      const inviteData = hashParams.get("d");
+      const sharedResult = hashParams.get("r");
+
+      if (inviteData) {
+        const payload = decodePayload(inviteData);
+        if (payload && validAnswers(payload.a)) {
+          state.role = "guest";
+          state.ownerName = safeName(payload.n) || "老朋友";
+          state.ownerAnswers = String(payload.a).split("").map(Number);
+          state.guessAnswers = Array(QUESTIONS.length).fill(null);
+          state.step = 0;
+          $("senderLabel").textContent = `${state.ownerName} 发来一张默契卷`;
+          $("guessTitle").textContent = `猜猜 ${state.ownerName} 会怎么选？`;
+          $("guessOwnerName").textContent = state.ownerName;
+          showScreen("guessIntro");
+          return;
+        }
+      }
+
+      if (sharedResult) {
+        const payload = decodePayload(sharedResult);
+        if (payload && validAnswers(payload.a) && validAnswers(payload.g)) {
+          resultForLink(payload);
+          return;
+        }
+      }
+
+      showScreen("landing");
+    }
+
+    window.addEventListener("hashchange", routeFromHash);
+    routeFromHash();
+  </script>
+</body>
+</html>
