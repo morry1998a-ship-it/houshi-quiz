@@ -1,5 +1,13 @@
 # 小红书发布文案
 
+## 已发布
+
+- 笔记：《后会友期》人物测试｜你是哪位旧友
+- 链接：https://www.xiaohongshu.com/explore/6aeca00e00000000030032e3?xsec_token=ABcad6VeGgLBV_pG20zLthbkxEhLZ2OaCsoh4w6CogXUg%3D&xsec_source=pc_user
+- 状态：已公开发布
+- 小红书 App 商品：已由账号本人通过“个人售卖”上架，售价 ¥0.99
+- 网页商品组件：App 内个人售卖商品暂未同步到网页发布器，笔记通过主页“个人售卖”路径导购
+
 ## 推荐标题
 
 芒果《后会友期》人物测试｜你是节目里的谁？
