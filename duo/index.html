@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#171a2e">
-  <meta name="description" content="后会友期双人旧友默契测试：先留下你的答案，再邀请老朋友来猜，看看你们到底有多了解彼此。">
-  <meta property="og:title" content="后会友期｜双人旧友默契测试">
-  <meta property="og:description" content="一个人先答，另一个人来猜。你们的默契，还停在从前吗？">
-  <title>后会友期｜双人旧友默契测试</title>
+  <meta name="description" content="后会友期旧友列车双人默契测试：选择四组旧友路线，留下答案，再邀请老朋友来猜，看看你们这趟旅程能坐到哪一站。">
+  <meta property="og:title" content="后会友期｜旧友列车双人默契测试">
+  <meta property="og:description" content="领一张双人车票，看看老朋友究竟记得哪个版本的你。">
+  <title>后会友期｜旧友列车双人默契测试</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2223%22 fill=%22%23171a2e%22/><path d=%22M24 37c0-7 5-12 12-12s12 5 12 12v26c0 7-5 12-12 12s-12-5-12-12z%22 fill=%22%23ffd454%22/><path d=%22M52 37c0-7 5-12 12-12s12 5 12 12v26c0 7-5 12-12 12s-12-5-12-12z%22 fill=%22%23ff6b5d%22/></svg>">
   <style>
     :root {
@@ -262,6 +262,44 @@
       font-weight: 850;
     }
 
+    .journey-line {
+      display: flex;
+      align-items: center;
+      max-width: 580px;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .05em;
+    }
+
+    .journey-line span {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .journey-line span::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      margin-right: 6px;
+      background: repeating-linear-gradient(90deg, var(--ink) 0 4px, transparent 4px 8px);
+      opacity: .5;
+    }
+
+    .journey-line span:last-child::after { display: none; }
+
+    .journey-line i {
+      width: 8px;
+      height: 8px;
+      border: 1.5px solid var(--ink);
+      border-radius: 50%;
+      background: var(--red);
+    }
+
     .start-card {
       position: relative;
       overflow: hidden;
@@ -360,6 +398,68 @@
       margin: 20px 0 8px;
       font-size: 12px;
       font-weight: 900;
+    }
+
+    .route-picker {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      margin-top: 9px;
+    }
+
+    .route-choice {
+      display: grid;
+      grid-template-columns: 27px 1fr;
+      gap: 7px;
+      align-items: center;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      padding: 8px;
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+      transition: transform .14s, border-color .14s, box-shadow .14s, background .14s;
+    }
+
+    .route-choice:hover {
+      border-color: var(--ink);
+      transform: translateX(2px);
+    }
+
+    .route-choice.selected {
+      border: 2px solid var(--ink);
+      background: var(--route-color, var(--yellow));
+      box-shadow: 2px 2px 0 var(--ink);
+      transform: translate(-1px, -1px);
+    }
+
+    .route-number {
+      display: grid;
+      width: 25px;
+      height: 25px;
+      place-items: center;
+      border: 1.5px solid var(--ink);
+      border-radius: 8px;
+      background: var(--paper);
+      font-size: 9px;
+      font-weight: 950;
+    }
+
+    .route-choice strong {
+      display: block;
+      font-size: 11px;
+      line-height: 1.3;
+      font-weight: 900;
+    }
+
+    .route-choice small {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 8px;
+      line-height: 1.3;
+      font-weight: 650;
     }
 
     .name-input {
@@ -799,6 +899,18 @@
       font-weight: 550;
     }
 
+    .guess-card .route-note {
+      display: inline-flex;
+      margin-top: 15px;
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      background: var(--yellow);
+      padding: 7px 11px;
+      color: var(--ink);
+      font-size: 11px;
+      font-weight: 850;
+    }
+
     /* Result */
     .result-wrap {
       width: min(850px, 100%);
@@ -1057,7 +1169,9 @@
       .landing h1 { font-size: clamp(49px, 15.5vw, 74px); }
       .landing h1 .outline { font-size: .58em; margin-top: 12px; }
       .steps { display: none; }
+      .journey-line { display: none; }
       .start-card { box-shadow: 5px 5px 0 var(--ink); }
+      .route-choice small { display: none; }
       .question-card {
         padding: 22px 17px 24px;
         border-radius: 20px;
@@ -1107,20 +1221,26 @@
       <section class="screen active" id="landingScreen" aria-labelledby="landingTitle">
         <div class="landing">
           <div>
-            <span class="eyebrow">非官方粉丝向 · 双人互动测试</span>
+            <span class="eyebrow">非官方粉丝向 · 后会友期双人互动</span>
             <h1 id="landingTitle">
               <span>你有多了解</span>
               <span><span class="accent">你的老朋友</span>？</span>
-              <span class="outline">一个人先答，另一个人来猜</span>
+              <span class="outline">这趟旧友列车，你们坐到哪一站？</span>
             </h1>
             <p class="lede">
-              有些默契不需要天天联系，但一到选择题就会露馅。留下你的 10 个答案，生成专属邀请链接，<strong>看看老朋友能猜中多少。</strong>
+              借《后会友期》的旧友列车设定，一起面对晚点、高反、旧账和下车时刻。留下你的 10 个答案，<strong>看看老朋友究竟记得哪个版本的你。</strong>
             </p>
             <div class="steps" aria-label="测试流程">
-              <span class="step">01 你先作答</span>
-              <span class="step">02 发给老朋友</span>
-              <span class="step">03 对方猜你的答案</span>
-              <span class="step">04 查看默契结果</span>
+              <span class="step">01 领取双人车票</span>
+              <span class="step">02 留下你的选择</span>
+              <span class="step">03 老友猜你的答案</span>
+              <span class="step">04 查看旅程终点</span>
+            </div>
+            <div class="journey-line" aria-label="节目旅程站点">
+              <span><i></i>张掖</span>
+              <span><i style="background:var(--blue)"></i>拉萨</span>
+              <span><i style="background:var(--mint)"></i>波密</span>
+              <span><i style="background:var(--pink)"></i>林芝</span>
             </div>
           </div>
 
@@ -1130,16 +1250,35 @@
               <span>10 QUESTIONS</span>
             </div>
             <div class="pair-visual" aria-hidden="true">
-              <span class="avatar" style="--avatar:var(--yellow)">你</span>
+              <span class="avatar" style="--avatar:var(--yellow)">票</span>
               <span class="thread"><i></i><b></b><i></i></span>
               <span class="avatar" style="--avatar:var(--blue)">友</span>
             </div>
-            <h2>先留下你的答案</h2>
-            <p>完成后再发给那位“应该很懂你”的旧朋友。</p>
+            <h2>领取你们的旧友车票</h2>
+            <p>先选一条旧友线，再把“猜猜我会怎么选”发给搭子。</p>
             <label class="field-label" for="ownerName">你的昵称</label>
             <input class="name-input" id="ownerName" type="text" maxlength="12" autocomplete="nickname" placeholder="比如：小橙">
+            <span class="field-label">你们更像哪一条旧友线？</span>
+            <div class="route-picker" id="routePicker" role="group" aria-label="选择旧友线">
+              <button class="route-choice selected" type="button" data-route="care" style="--route-color:var(--yellow)" aria-pressed="true">
+                <span class="route-number">01</span>
+                <span><strong>主动照顾线</strong><small>一个主动，一个慢热</small></span>
+              </button>
+              <button class="route-choice" type="button" data-route="memory" style="--route-color:var(--blue)" aria-pressed="false">
+                <span class="route-number">02</span>
+                <span><strong>旧日同频线</strong><small>记得从前，也怕走远</small></span>
+              </button>
+              <button class="route-choice" type="button" data-route="boundary" style="--route-color:var(--pink)" aria-pressed="false">
+                <span class="route-number">03</span>
+                <span><strong>清醒边界线</strong><small>要讲清楚，也要体面</small></span>
+              </button>
+              <button class="route-choice" type="button" data-route="battle" style="--route-color:var(--mint)" aria-pressed="false">
+                <span class="route-number">04</span>
+                <span><strong>热烈磨合线</strong><small>并肩过，也拧巴过</small></span>
+              </button>
+            </div>
             <button class="primary" id="startCreate" type="button">生成我的默契卷 →</button>
-            <p class="fine-print">答案会编码进专属链接，不会发送到服务器。</p>
+            <p class="fine-print">答案会编码进专属链接，不会发送到服务器。灵感来自节目公开旅程设定，非官方粉丝测试。</p>
           </div>
         </div>
       </section>
@@ -1170,13 +1309,13 @@
       <section class="screen" id="inviteScreen" aria-labelledby="inviteTitle">
         <div class="invite-wrap">
           <article class="invite-card">
-            <span class="sealed">10 个答案已封存</span>
-            <h2 id="inviteTitle">默契卷做好了</h2>
+            <span class="sealed">旧友列车已检票</span>
+            <h2 id="inviteTitle">你们的好友车票已生成</h2>
             <p id="inviteCopy">把下面的专属链接发给老朋友。对方看不到你的答案，只能凭对你的了解来猜。</p>
             <div class="invite-summary">
               <div class="mini-stat"><b id="inviteName">你</b><span>发起人</span></div>
               <div class="mini-stat"><b>10</b><span>道旧友选择题</span></div>
-              <div class="mini-stat"><b>2 min</b><span>对方完成时间</span></div>
+              <div class="mini-stat"><b id="inviteRoute">主动照顾线</b><span>本轮旧友线</span></div>
             </div>
             <label class="field-label" for="inviteUrl">专属邀请链接</label>
             <textarea class="invite-url" id="inviteUrl" readonly></textarea>
@@ -1192,9 +1331,10 @@
       <section class="screen" id="guessIntroScreen" aria-labelledby="guessTitle">
         <div class="guess-intro-wrap">
           <article class="guess-card">
-            <span class="sender" id="senderLabel">老朋友发来一张默契卷</span>
+            <span class="sender" id="senderLabel">老朋友发来一张旧友车票</span>
             <h2 id="guessTitle">猜猜 TA 会怎么选？</h2>
-            <p>这里有 10 道关于旅行、聊天、边界和重逢的选择题。你不需要回答自己会怎么选，只需要猜：<strong id="guessOwnerName">TA</strong> 会怎么选。</p>
+            <p>这是一趟以《后会友期》为灵感的友情列车。途中有晚点、高反、旧账和下车时刻。你不需要回答自己会怎么选，只需要猜：<strong id="guessOwnerName">TA</strong> 会怎么选。</p>
+            <p class="route-note" id="guessRoute">本轮旧友线：主动照顾线</p>
             <button class="primary" id="startGuess" type="button">开始猜答案 →</button>
           </article>
         </div>
@@ -1204,7 +1344,7 @@
         <div class="result-wrap">
           <article class="result-card">
             <div class="result-hero" id="resultHero" data-heart="♥">
-              <span class="result-kicker" id="resultKicker">你们的旧友默契结果</span>
+            <span class="result-kicker" id="resultKicker">你们的旧友列车默契结果</span>
               <div class="score-line">
                 <span class="score-number" id="scoreNumber">0</span>
                 <span class="score-unit">%</span>
@@ -1216,7 +1356,7 @@
               <div class="result-summary">
                 <div class="summary-box"><b id="correctCount">0/10</b><span>猜中答案</span></div>
                 <div class="summary-box"><b id="ownerLabel">TA</b><span>试卷主人</span></div>
-                <div class="summary-box"><b id="relationAge">旧友</b><span>关系类型</span></div>
+              <div class="summary-box"><b id="relationAge">旧友</b><span>本轮旧友线</span></div>
               </div>
               <h3 class="review-title">逐题对照</h3>
               <div class="review-list" id="reviewList"></div>
@@ -1233,7 +1373,7 @@
 
     <footer>
       <span>后会友期 · 非官方粉丝向双人测试</span>
-      <span>MISS YOU, STILL KNOW YOU?</span>
+      <span>张掖 · 拉萨 · 波密 · 林芝 / MISS YOU, STILL KNOW YOU?</span>
     </footer>
   </div>
 
@@ -1242,132 +1382,159 @@
   <script>
     const QUESTIONS = [
       {
-        text: "旅行途中突然下起大雨，我会？",
+        text: "旧友列车刚出发，我会选哪个座位？",
         options: [
-          "先找一家咖啡馆，听雨顺便聊天",
-          "买件雨衣，按原计划继续走",
-          "回酒店窝着，把没聊完的话聊完",
-          "先拍照发群，淋雨也要留下证据"
+          "靠窗戴耳机，先安静看一会儿风景",
+          "过道位，方便随时和所有人搭话",
+          "先确认大家的座位、行李和车次",
+          "拉人玩桌游，开局就要热起来"
         ]
       },
       {
-        text: "朋友深夜只发来一句「在吗」，我会？",
+        text: "列车突然晚点两个小时，我会？",
         options: [
-          "秒回：我在，怎么了？",
-          "直接打电话，怕打字说不清",
-          "先等对方组织语言，不催",
-          "回个表情包：请开始你的表演"
+          "正好有空，和同行的人慢慢聊",
+          "立刻查改签、路线和后续安排",
+          "坐着放空，不急着解决什么",
+          "先拍照发群：旅程事故素材有了"
         ]
       },
       {
-        text: "约好的老朋友聚会临时取消，我会？",
+        text: "到了高原，朋友明显不舒服，我会？",
         options: [
-          "先问朋友是不是遇到事情了",
-          "立刻改约一个确定的新时间",
-          "嘴上说没关系，自己默默失落",
-          "调侃对方放鸽子，回头再算账"
+          "留在旁边陪着，反复确认状态",
+          "马上找乘务员、药和热水",
+          "不围着 TA，但保证随叫随到",
+          "说点玩笑缓和紧张，再帮忙处理"
         ]
       },
       {
-        text: "一起旅行时，我更想负责？",
+        text: "几组旧友坐在一起，气氛突然尴尬，我会？",
         options: [
-          "情绪和氛围，别让谁被冷落",
-          "路线和行动，保证事情顺利",
-          "账目和边界，提前说清楚",
-          "拍照和名场面，给以后留证据"
+          "主动抛话题，先别让谁被落下",
+          "顺势提议做点具体的事",
+          "不硬撑热闹，觉得沉默也没关系",
+          "开个无伤大雅的玩笑，把局面撬开"
         ]
       },
       {
-        text: "最能让我对老朋友失望的是？",
+        text: "期待很久的行程临时取消，我会？",
         options: [
-          "情绪不被回应，总像在自言自语",
-          "真正需要的时候完全找不到人",
-          "承诺很多次，却一次次落空",
-          "玩笑没有分寸，只拿我取乐"
+          "先接住大家的失落，再想替代方案",
+          "立刻查天气和路线，重新出发",
+          "接受变化，留在原地也可能很好",
+          "干脆把取消现场拍成旅行名场面"
         ]
       },
       {
-        text: "关系出现裂痕时，我通常会？",
+        text: "节目里说「谈开的人可以提前下车」，我会？",
         options: [
-          "先主动联系，不想一直耗着",
-          "需要对方先给一个明确态度",
-          "安静观察，不勉强任何人",
-          "见面聊一场，比线上拉扯有用"
+          "如果能修复关系，我愿意先开口",
+          "有问题就当面说清，不拖到终点",
+          "先听对方怎么想，不勉强表态",
+          "先互怼两句探探态度，再认真聊"
         ]
       },
       {
-        text: "我认为最好的重逢方式是？",
+        text: "老朋友在车上翻起很多年前的旧账，我会？",
         options: [
-          "好好吃一顿，把近况聊透",
-          "说走就走，一起做件具体的事",
-          "不用寒暄，安静坐着也自在",
-          "先互损十分钟，确认熟悉感还在"
+          "先听对方说完，别急着反驳",
+          "逐件事对清楚，把事实摆出来",
+          "说清边界，不接受无限循环",
+          "用玩笑卸一下压力，再谈真正的点"
         ]
       },
       {
-        text: "如果老朋友变了，我最在意？",
+        text: "列车夜里穿过很长的黑暗，我会想？",
         options: [
-          "还愿不愿意分享真实情绪",
-          "还能不能互相托住现实问题",
-          "还尊不尊重彼此的边界",
-          "还能不能接住彼此的玩笑"
+          "给很久没联系的人发一句近况",
+          "计划到站后要一起做的第一件事",
+          "回看以前的聊天和照片",
+          "把这一刻拍下来，留给以后笑"
         ]
       },
       {
-        text: "旧朋友迟迟没回消息，我会？",
+        text: "快到终点时，旧友之间还有话没说开，我会？",
         options: [
-          "有点担心，会问是不是出事了",
-          "直接再问一次，猜来猜去更烦",
-          "理解大家都有各自的生活",
-          "发张梗图提醒：失踪人口回归"
+          "主动问：要不要留十分钟聊聊",
+          "约下车后单独把问题解决",
+          "接受有遗憾，不逼彼此给结论",
+          "先把最后一段旅程玩痛快，再说"
         ]
       },
       {
-        text: "我心里最理想的朋友关系是？",
+        text: "这趟旧友列车对我来说，最重要的是？",
         options: [
-          "有人认真听你说，也记得回应",
-          "有事一句就到，行动胜过客套",
-          "久不联系，也不会互相猜疑",
-          "见面互损，分开又真的惦记"
+          "确认彼此还在不在乎",
+          "知道未来还能不能互相托住",
+          "重新找到舒服的距离和边界",
+          "再一起制造一段能笑很久的回忆"
         ]
       }
     ];
 
+    const ROUTES = {
+      care: {
+        label: "主动照顾线",
+        people: "张萌 × 马天宇",
+        color: "#ffd454",
+        copy: "一个把关心说出口，一个把在意藏在观察里。"
+      },
+      memory: {
+        label: "旧日同频线",
+        people: "厉娜 × 许飞",
+        color: "#91c9ff",
+        copy: "有人珍藏从前，有人接受距离，但记忆仍然有重量。"
+      },
+      boundary: {
+        label: "清醒边界线",
+        people: "文吉儿 × 王子璇",
+        color: "#ffb8c9",
+        copy: "友情里除了感情，也有承诺、付出和体面。"
+      },
+      battle: {
+        label: "热烈磨合线",
+        people: "青稚 × 白小纯",
+        color: "#afe7c0",
+        copy: "一起赢过，也一起拧巴过；默契并不总是温柔。"
+      }
+    };
+
     const GRADES = [
       {
         min: 9,
-        label: "灵魂存档没丢",
+        label: "终点留座 · 默契没走丢",
         color: "#ffd454",
         heart: "♥",
-        line: "你们对彼此的默认设置，还停在很熟的那一页。"
+        line: "你们从张掖一路猜到了林芝，熟悉的频道一直没有断。"
       },
       {
         min: 7,
-        label: "老朋友还在线",
+        label: "林芝站 · 看见彼此的新版本",
         color: "#afe7c0",
         heart: "✦",
-        line: "大部分频道还接得上，偶尔一点偏差，反而证明大家都长大了。"
+        line: "大部分答案都在线，也看见了这些年长出来的新变化。"
       },
       {
         min: 5,
-        label: "熟悉，也有新版本",
+        label: "波密站 · 默契在雾里显形",
         color: "#91c9ff",
         heart: "◐",
-        line: "你记得从前的 TA，也开始看见现在的 TA。关系还有继续更新的空间。"
+        line: "你记得从前的 TA，也开始读懂现在的 TA。"
       },
       {
         min: 3,
-        label: "需要一次认真重逢",
+        label: "拉萨站 · 先适应彼此的高反",
         color: "#ffb8c9",
         heart: "△",
-        line: "你们之间不是没默契，只是太久没有重新对答案了。"
+        line: "不是没有默契，只是太久没有坐下来重新对答案。"
       },
       {
         min: 0,
-        label: "同名不同册的旧友",
+        label: "张掖站 · 车票同名，线路不同",
         color: "#e4ded2",
         heart: "?",
-        line: "猜错不等于不在乎，也许你们只是都在用新的方式长大。"
+        line: "猜错不等于不在乎，也许你们都需要重新认识一次。"
       }
     ];
 
@@ -1382,6 +1549,7 @@
     const state = {
       role: "owner",
       ownerName: "",
+      route: "care",
       ownerAnswers: null,
       guessAnswers: Array(QUESTIONS.length).fill(null),
       step: 0,
@@ -1537,12 +1705,14 @@
       const payload = {
         v: 1,
         n: state.ownerName,
+        p: state.route,
         a: state.ownerAnswers.join("")
       };
       const base = `${location.origin}${location.pathname}`;
       state.inviteUrl = `${base}#d=${encodePayload(payload)}`;
       $("inviteName").textContent = state.ownerName;
-      $("inviteCopy").textContent = `${state.ownerName} 的 10 个答案已经封存。把链接发给老朋友，让对方凭对你的了解来猜。`;
+      $("inviteRoute").textContent = ROUTES[state.route].label;
+      $("inviteCopy").textContent = `${state.ownerName} 的旧友列车已经发车，10 个答案已封存。把链接发给老朋友，让对方凭对你的了解来猜。`;
       $("inviteUrl").value = state.inviteUrl;
       showScreen("invite");
     }
@@ -1561,6 +1731,7 @@
       const payload = {
         v: 1,
         n: state.ownerName,
+        p: state.route,
         a: state.ownerAnswers.join(""),
         g: state.guessAnswers.join("")
       };
@@ -1581,10 +1752,10 @@
       $("resultTagline").textContent = grade.line;
       $("resultHero").style.setProperty("--result-color", grade.color);
       $("resultHero").dataset.heart = grade.heart;
-      $("resultKicker").textContent = `${name} × 你 · 双人旧友默契结果`;
+      $("resultKicker").textContent = `${name} × 你 · 后会友期双人默契`;
       $("correctCount").textContent = `${correct}/10`;
       $("ownerLabel").textContent = name;
-      $("relationAge").textContent = correct >= 7 ? "很熟" : correct >= 4 ? "旧友" : "待更新";
+      $("relationAge").textContent = ROUTES[state.route]?.label || "旧友线";
 
       $("reviewList").innerHTML = QUESTIONS.map((question, index) => {
         const inferred = state.guessAnswers[index];
@@ -1647,6 +1818,16 @@
     });
     $("backButton").addEventListener("click", goBack);
     $("startGuess").addEventListener("click", startGuess);
+    document.querySelectorAll(".route-choice").forEach(button => {
+      button.addEventListener("click", () => {
+        state.route = button.dataset.route;
+        document.querySelectorAll(".route-choice").forEach(choice => {
+          const selected = choice === button;
+          choice.classList.toggle("selected", selected);
+          choice.setAttribute("aria-pressed", selected ? "true" : "false");
+        });
+      });
+    });
     $("copyInvite").addEventListener("click", () => {
       shareLink(
         state.inviteUrl,
@@ -1669,10 +1850,16 @@
     $("createMine").addEventListener("click", () => {
       history.replaceState({}, "", location.pathname);
       state.role = "owner";
+      state.route = "care";
       state.ownerAnswers = null;
       state.guessAnswers = Array(QUESTIONS.length).fill(null);
       state.step = 0;
       $("ownerName").value = "";
+      document.querySelectorAll(".route-choice").forEach(choice => {
+        const selected = choice.dataset.route === "care";
+        choice.classList.toggle("selected", selected);
+        choice.setAttribute("aria-pressed", selected ? "true" : "false");
+      });
       showScreen("landing");
     });
 
@@ -1697,12 +1884,14 @@
         if (payload && validAnswers(payload.a)) {
           state.role = "guest";
           state.ownerName = safeName(payload.n) || "老朋友";
+          state.route = ROUTES[payload.p] ? payload.p : "care";
           state.ownerAnswers = String(payload.a).split("").map(Number);
           state.guessAnswers = Array(QUESTIONS.length).fill(null);
           state.step = 0;
           $("senderLabel").textContent = `${state.ownerName} 发来一张默契卷`;
           $("guessTitle").textContent = `猜猜 ${state.ownerName} 会怎么选？`;
           $("guessOwnerName").textContent = state.ownerName;
+          $("guessRoute").textContent = `本轮旧友线：${ROUTES[state.route].label} · ${ROUTES[state.route].people}`;
           showScreen("guessIntro");
           return;
         }
@@ -1711,6 +1900,7 @@
       if (sharedResult) {
         const payload = decodePayload(sharedResult);
         if (payload && validAnswers(payload.a) && validAnswers(payload.g)) {
+          state.route = ROUTES[payload.p] ? payload.p : "care";
           resultForLink(payload);
           return;
         }
