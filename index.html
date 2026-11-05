@@ -1,0 +1,1541 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f5efdf">
+  <meta name="description" content="后会友期测试：用一个轻松的友情小测试，看看你和朋友之间是哪一种相处方式。">
+  <meta property="og:title" content="后会友期测试｜你是哪一种好友？">
+  <meta property="og:description" content="12 道情境题，测出你的友情相处风格。">
+  <meta property="og:type" content="website">
+  <title>后会友期测试｜你是哪一种好友？</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤝</text></svg>">
+  <style>
+    :root {
+      --paper: #f5efdf;
+      --paper-deep: #e8dec7;
+      --ink: #191913;
+      --muted: #6e695e;
+      --card: #fffaf0;
+      --lime: #caf36a;
+      --orange: #ff6b35;
+      --blue: #9bc5ff;
+      --pink: #ffb3c7;
+      --yellow: #ffd45c;
+      --line: rgba(25, 25, 19, .17);
+      --shadow: 6px 6px 0 var(--ink);
+      --radius: 26px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--paper);
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 15%, rgba(202, 243, 106, .32) 0 4%, transparent 4.2%),
+        radial-gradient(circle at 88% 10%, rgba(255, 179, 199, .34) 0 5%, transparent 5.2%),
+        radial-gradient(circle at 78% 89%, rgba(155, 197, 255, .24) 0 8%, transparent 8.2%),
+        linear-gradient(115deg, rgba(255, 255, 255, .22), transparent 42%),
+        var(--paper);
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .32;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.1'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+      z-index: 20;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    button:focus-visible,
+    input:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
+    }
+
+    .app {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 22px 18px max(24px, env(safe-area-inset-bottom));
+    }
+
+    .site-header {
+      width: min(1060px, 100%);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .1em;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 40px;
+      height: 40px;
+      place-items: center;
+      border: 2px solid var(--ink);
+      border-radius: 12px;
+      background: var(--lime);
+      box-shadow: 3px 3px 0 var(--ink);
+      transform: rotate(-4deg);
+      font-size: 19px;
+    }
+
+    .brand-sub {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .14em;
+    }
+
+    .header-sticker {
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      background: var(--card);
+      padding: 8px 13px;
+      font-size: 12px;
+      font-weight: 800;
+      transform: rotate(2deg);
+    }
+
+    main {
+      flex: 1;
+      width: min(1060px, 100%);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 36px 0 44px;
+    }
+
+    .screen {
+      display: none;
+      width: 100%;
+      animation: screen-in .42s cubic-bezier(.22, .8, .24, 1);
+    }
+
+    .screen.is-active {
+      display: block;
+    }
+
+    @keyframes screen-in {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Intro */
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(310px, .85fr);
+      gap: clamp(34px, 6vw, 78px);
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 22px;
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      background: var(--yellow);
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      box-shadow: 3px 3px 0 var(--ink);
+      transform: rotate(-1deg);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 0 2px var(--ink);
+    }
+
+    .intro h1 {
+      max-width: 680px;
+      margin: 0;
+      font-family: "Hiragino Sans GB", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: clamp(54px, 8.4vw, 98px);
+      line-height: .96;
+      letter-spacing: -.075em;
+      font-weight: 950;
+    }
+
+    .title-row {
+      display: block;
+    }
+
+    .title-highlight {
+      position: relative;
+      display: inline-block;
+      padding: 0 .06em .05em;
+      z-index: 0;
+    }
+
+    .title-highlight::after {
+      content: "";
+      position: absolute;
+      right: -.02em;
+      bottom: .05em;
+      left: -.02em;
+      height: .34em;
+      border-radius: 8px;
+      background: var(--orange);
+      transform: rotate(-1.2deg);
+      z-index: -1;
+    }
+
+    .title-question {
+      color: transparent;
+      -webkit-text-stroke: 2.5px var(--ink);
+    }
+
+    .intro-copy {
+      max-width: 590px;
+      margin: 26px 0 0;
+      color: #4f4b42;
+      font-size: clamp(16px, 2vw, 19px);
+      line-height: 1.8;
+      font-weight: 500;
+    }
+
+    .intro-copy strong {
+      color: var(--ink);
+      font-weight: 900;
+      box-shadow: inset 0 -.5em var(--lime);
+    }
+
+    .start-card {
+      position: relative;
+      border: 2px solid var(--ink);
+      border-radius: var(--radius);
+      background: var(--card);
+      padding: clamp(24px, 4vw, 36px);
+      box-shadow: var(--shadow);
+    }
+
+    .start-card::before {
+      content: "↘";
+      position: absolute;
+      top: -42px;
+      left: -20px;
+      font-size: 54px;
+      font-weight: 300;
+      transform: rotate(-18deg);
+    }
+
+    .card-kicker {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 23px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+
+    .time-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border-radius: 999px;
+      background: var(--paper-deep);
+      padding: 5px 9px;
+      letter-spacing: 0;
+    }
+
+    .field-label {
+      display: block;
+      margin-bottom: 9px;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .name-field {
+      width: 100%;
+      border: 2px solid var(--ink);
+      border-radius: 14px;
+      background: #fff;
+      padding: 15px 16px;
+      color: var(--ink);
+      font-size: 16px;
+      transition: box-shadow .16s, transform .16s;
+    }
+
+    .name-field::placeholder {
+      color: #a19a8c;
+    }
+
+    .name-field:focus {
+      box-shadow: 4px 4px 0 var(--blue);
+      transform: translate(-1px, -1px);
+      outline: 0;
+    }
+
+    .primary-button,
+    .secondary-button,
+    .share-button {
+      width: 100%;
+      min-height: 54px;
+      border: 2px solid var(--ink);
+      border-radius: 15px;
+      padding: 13px 18px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform .14s, box-shadow .14s, background .14s;
+    }
+
+    .primary-button {
+      margin-top: 20px;
+      background: var(--lime);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .primary-button:hover,
+    .share-button:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0 var(--ink);
+    }
+
+    .primary-button:active,
+    .secondary-button:active,
+    .share-button:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+
+    .secondary-button {
+      background: var(--card);
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    .microcopy {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    /* Quiz */
+    .quiz-shell {
+      width: min(760px, 100%);
+      margin: 0 auto;
+    }
+
+    .quiz-top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .icon-button {
+      display: grid;
+      flex: 0 0 auto;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      background: var(--card);
+      box-shadow: 2px 2px 0 var(--ink);
+      cursor: pointer;
+      font-size: 20px;
+      transition: transform .14s, box-shadow .14s;
+    }
+
+    .icon-button:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .icon-button:disabled {
+      visibility: hidden;
+    }
+
+    .progress-wrap {
+      flex: 1;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .progress-track {
+      height: 11px;
+      overflow: hidden;
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      background: var(--card);
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      border-right: 1.5px solid var(--ink);
+      border-radius: inherit;
+      background: var(--orange);
+      transition: width .38s cubic-bezier(.22, .8, .24, 1);
+    }
+
+    .question-card {
+      position: relative;
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      border-radius: var(--radius);
+      background: var(--card);
+      padding: clamp(24px, 5vw, 42px);
+      box-shadow: var(--shadow);
+    }
+
+    .question-index {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .09em;
+    }
+
+    .question-index::before {
+      content: "";
+      width: 22px;
+      height: 4px;
+      border-radius: 3px;
+      background: var(--orange);
+    }
+
+    .question-text {
+      max-width: 650px;
+      margin: 0 0 27px;
+      font-size: clamp(24px, 4.5vw, 36px);
+      line-height: 1.35;
+      letter-spacing: -.035em;
+      font-weight: 950;
+    }
+
+    .answers {
+      display: grid;
+      gap: 11px;
+    }
+
+    .answer {
+      position: relative;
+      display: grid;
+      grid-template-columns: 34px 1fr 22px;
+      gap: 12px;
+      align-items: center;
+      width: 100%;
+      min-height: 60px;
+      border: 1.5px solid var(--line);
+      border-radius: 15px;
+      background: #fffdf8;
+      padding: 12px 14px;
+      text-align: left;
+      cursor: pointer;
+      transition: transform .16s, border-color .16s, background .16s, box-shadow .16s;
+    }
+
+    .answer:hover {
+      border-color: var(--ink);
+      background: var(--paper);
+      transform: translateX(3px);
+    }
+
+    .answer.is-selected {
+      border: 2px solid var(--ink);
+      background: var(--lime);
+      box-shadow: 3px 3px 0 var(--ink);
+      transform: translate(-2px, -2px);
+    }
+
+    .answer-letter {
+      display: grid;
+      width: 30px;
+      height: 30px;
+      place-items: center;
+      border: 1.5px solid var(--ink);
+      border-radius: 9px;
+      background: var(--card);
+      font-size: 12px;
+      font-weight: 950;
+    }
+
+    .answer-text {
+      font-size: 15px;
+      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    .answer-check {
+      display: grid;
+      width: 21px;
+      height: 21px;
+      place-items: center;
+      border: 1.5px solid var(--ink);
+      border-radius: 50%;
+      background: var(--card);
+      font-size: 12px;
+      font-weight: 950;
+      opacity: 0;
+      transform: scale(.6);
+      transition: opacity .16s, transform .16s;
+    }
+
+    .answer.is-selected .answer-check {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .quiz-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 30px;
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .quiz-foot::before {
+      content: "没有标准答案，选第一反应就好";
+    }
+
+    .auto-next {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mini-dots {
+      display: flex;
+      gap: 4px;
+    }
+
+    .mini-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--ink);
+      opacity: .25;
+    }
+
+    /* Result */
+    .result-shell {
+      position: relative;
+      width: min(820px, 100%);
+      margin: 0 auto;
+    }
+
+    .result-card {
+      position: relative;
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      border-radius: 32px;
+      background: var(--card);
+      box-shadow: 8px 8px 0 var(--ink);
+    }
+
+    .result-banner {
+      position: relative;
+      overflow: hidden;
+      min-height: 248px;
+      border-bottom: 2px solid var(--ink);
+      padding: clamp(28px, 5vw, 48px);
+      background: var(--result-color, var(--lime));
+    }
+
+    .result-banner::after {
+      content: attr(data-emoji);
+      position: absolute;
+      right: 4%;
+      bottom: -48px;
+      font-size: clamp(150px, 28vw, 238px);
+      line-height: 1;
+      filter: grayscale(1);
+      opacity: .12;
+      transform: rotate(8deg);
+      pointer-events: none;
+    }
+
+    .result-eyebrow {
+      display: inline-flex;
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      background: var(--card);
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .06em;
+    }
+
+    .result-name {
+      position: relative;
+      z-index: 1;
+      max-width: 610px;
+      margin: 23px 0 10px;
+      font-size: clamp(42px, 8vw, 72px);
+      line-height: 1.08;
+      letter-spacing: -.065em;
+      font-weight: 950;
+    }
+
+    .result-tagline {
+      position: relative;
+      z-index: 1;
+      max-width: 580px;
+      margin: 0;
+      font-size: clamp(16px, 2.8vw, 20px);
+      line-height: 1.6;
+      font-weight: 750;
+    }
+
+    .result-body {
+      padding: clamp(25px, 5vw, 44px);
+    }
+
+    .result-description {
+      max-width: 680px;
+      margin: 0 0 28px;
+      color: #454139;
+      font-size: 16px;
+      line-height: 1.85;
+      font-weight: 500;
+    }
+
+    .traits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 31px;
+    }
+
+    .trait {
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      background: var(--paper);
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .match-card {
+      border: 1.5px solid var(--ink);
+      border-radius: 18px;
+      background: #fffdf8;
+      padding: 20px;
+    }
+
+    .subsection-title {
+      margin: 0 0 16px;
+      font-size: 13px;
+      font-weight: 950;
+      letter-spacing: .08em;
+    }
+
+    .score-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 34px;
+      gap: 10px;
+      align-items: center;
+      margin-top: 11px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .score-track {
+      height: 8px;
+      overflow: hidden;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      background: var(--paper);
+    }
+
+    .score-fill {
+      height: 100%;
+      border-right: 1px solid var(--ink);
+      border-radius: inherit;
+      background: var(--row-color, var(--lime));
+    }
+
+    .best-match {
+      position: relative;
+      overflow: hidden;
+      min-height: 166px;
+      border: 1.5px solid var(--ink);
+      border-radius: 18px;
+      background: var(--paper-deep);
+      padding: 20px;
+    }
+
+    .best-match::after {
+      content: "✦";
+      position: absolute;
+      right: 14px;
+      bottom: -10px;
+      font-size: 82px;
+      opacity: .16;
+      transform: rotate(12deg);
+    }
+
+    .best-match-label {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+
+    .best-match-name {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 25px;
+      line-height: 1.25;
+      letter-spacing: -.03em;
+      font-weight: 950;
+    }
+
+    .best-match-copy {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      color: #585248;
+      font-size: 13px;
+      line-height: 1.65;
+      font-weight: 600;
+    }
+
+    .result-actions {
+      display: grid;
+      grid-template-columns: 1fr .72fr;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .share-button {
+      background: var(--ink);
+      color: #fff;
+      box-shadow: 4px 4px 0 var(--orange);
+    }
+
+    .restart-button {
+      margin-top: 0;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 60;
+      left: 50%;
+      bottom: max(26px, env(safe-area-inset-bottom));
+      width: max-content;
+      max-width: calc(100vw - 32px);
+      border: 2px solid var(--ink);
+      border-radius: 13px;
+      background: var(--ink);
+      color: #fff;
+      padding: 12px 17px;
+      font-size: 13px;
+      font-weight: 800;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 15px);
+      transition: opacity .2s, transform .2s;
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    footer {
+      width: min(1060px, 100%);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .04em;
+    }
+
+    .footer-quote {
+      color: var(--ink);
+    }
+
+    @media (max-width: 760px) {
+      .app {
+        padding: 16px 14px max(20px, env(safe-area-inset-bottom));
+      }
+
+      .header-sticker {
+        display: none;
+      }
+
+      main {
+        align-items: flex-start;
+        padding: 42px 0 38px;
+      }
+
+      .intro {
+        grid-template-columns: 1fr;
+        gap: 46px;
+      }
+
+      .intro h1 {
+        font-size: clamp(54px, 18vw, 80px);
+      }
+
+      .intro-copy {
+        margin-top: 20px;
+      }
+
+      .start-card {
+        box-shadow: 5px 5px 0 var(--ink);
+      }
+
+      .start-card::before {
+        top: -38px;
+        left: 10px;
+        font-size: 44px;
+      }
+
+      .quiz-top {
+        margin-bottom: 14px;
+      }
+
+      .question-card {
+        padding: 22px 18px 24px;
+        border-radius: 21px;
+        box-shadow: 5px 5px 0 var(--ink);
+      }
+
+      .question-text {
+        margin-bottom: 21px;
+        font-size: clamp(23px, 6.6vw, 31px);
+      }
+
+      .answers {
+        gap: 9px;
+      }
+
+      .answer {
+        grid-template-columns: 29px 1fr 20px;
+        min-height: 55px;
+        padding: 10px;
+      }
+
+      .answer-letter {
+        width: 27px;
+        height: 27px;
+      }
+
+      .answer-text {
+        font-size: 14px;
+      }
+
+      .quiz-foot::before {
+        content: "选第一反应就好";
+      }
+
+      .result-card {
+        border-radius: 23px;
+        box-shadow: 5px 5px 0 var(--ink);
+      }
+
+      .result-banner {
+        min-height: 265px;
+        padding: 26px 22px 30px;
+      }
+
+      .result-body {
+        padding: 25px 20px 22px;
+      }
+
+      .result-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .result-actions {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        justify-content: center;
+      }
+
+      .footer-quote {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="site-header">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">↗</span>
+        <span>后会友期<br><span class="brand-sub">A FRIENDLY TEST</span></span>
+      </div>
+      <span class="header-sticker">朋友，是后会有期的人</span>
+    </header>
+
+    <main>
+      <section class="screen intro is-active" id="introScreen" aria-labelledby="introTitle">
+        <div class="intro-copy-wrap">
+          <span class="eyebrow">12 道题 · 约 2 分钟</span>
+          <h1 id="introTitle">
+            <span class="title-row">后会</span>
+            <span class="title-row"><span class="title-highlight">友期</span>测试</span>
+            <span class="title-row title-question">你是哪一种好友？</span>
+          </h1>
+          <p class="intro-copy">
+            朋友不是同一个模子刻出来的。有人负责接话，有人负责出发，也有人只在关键时刻出现。选选看，<strong>你把友情过成了哪一种样子。</strong>
+          </p>
+        </div>
+
+        <div class="start-card">
+          <div class="card-kicker">
+            <span>开始之前</span>
+            <span class="time-pill">◷ 2 MIN</span>
+          </div>
+          <label class="field-label" for="playerName">怎么称呼你？<span style="color: var(--muted); font-weight: 500;">（选填）</span></label>
+          <input class="name-field" id="playerName" type="text" maxlength="16" autocomplete="nickname" placeholder="比如：小橙">
+          <button class="primary-button" id="startButton" type="button">开始测试 →</button>
+          <p class="microcopy">答案只在你的浏览器里计算，不会上传。</p>
+        </div>
+      </section>
+
+      <section class="screen" id="quizScreen" aria-labelledby="questionText">
+        <div class="quiz-shell">
+          <div class="quiz-top">
+            <button class="icon-button" id="backButton" type="button" aria-label="上一题">←</button>
+            <div class="progress-wrap">
+              <div class="progress-meta">
+                <span id="progressLabel">第 1 题</span>
+                <span id="progressPercent">0%</span>
+              </div>
+              <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="question-card">
+            <div class="question-index" id="questionIndex">QUESTION 01</div>
+            <h2 class="question-text" id="questionText"></h2>
+            <div class="answers" id="answers"></div>
+          </div>
+
+          <div class="quiz-foot">
+            <span class="auto-next">选择后自动进入下一题</span>
+            <span class="mini-dots" aria-hidden="true">
+              <span class="mini-dot"></span><span class="mini-dot"></span><span class="mini-dot"></span>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="resultScreen" aria-labelledby="resultName">
+        <div class="result-shell">
+          <article class="result-card">
+            <div class="result-banner" id="resultBanner" data-emoji="☀">
+              <span class="result-eyebrow" id="resultEyebrow">你的友情使用说明书</span>
+              <h2 class="result-name" id="resultName"></h2>
+              <p class="result-tagline" id="resultTagline"></p>
+            </div>
+            <div class="result-body">
+              <p class="result-description" id="resultDescription"></p>
+              <div class="traits" id="resultTraits" aria-label="你的三个好友特质"></div>
+              <div class="result-grid">
+                <div class="match-card">
+                  <h3 class="subsection-title">你的友情成分</h3>
+                  <div id="scoreRows"></div>
+                </div>
+                <div class="best-match">
+                  <span class="best-match-label">可能最合拍的是</span>
+                  <span class="best-match-name" id="bestMatchName"></span>
+                  <p class="best-match-copy" id="bestMatchCopy"></p>
+                </div>
+              </div>
+              <div class="result-actions">
+                <button class="share-button" id="shareButton" type="button">分享我的结果 ↗</button>
+                <button class="secondary-button restart-button" id="restartButton" type="button">再测一次</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span class="footer-quote">“相见有时，惦记无期。”</span>
+      <span>后会友期 · FRIENDSHIP, YOUR WAY</span>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const RESULTS = {
+      warm: {
+        name: "人间充电站",
+        emoji: "☀️",
+        color: "#ffd45c",
+        tagline: "你一出现，聊天框就自动升温。",
+        description: "你擅长把“我在”变成具体可感的陪伴：记得朋友随口提过的小事，也能第一时间接住情绪。朋友们喜欢找你，不一定是因为你总有答案，而是因为你让人感觉自己被认真看见。",
+        traits: ["很会接情绪", "细节记忆怪", "安全感制造机"],
+        bestMatch: "安静同频型",
+        matchCopy: "你主动照亮，对方稳稳接住。一个负责开口，一个负责听懂，热度刚好，不会过载。"
+      },
+      action: {
+        name: "随叫随到行动派",
+        emoji: "🚀",
+        color: "#9bc5ff",
+        tagline: "一句“出来吗”，你已经到楼下了。",
+        description: "比起长篇大论，你更相信到场的力量。定餐厅、查路线、搬东西、撑场子，你常常话不多但事办得漂亮。你的友情不靠高频汇报维系，而靠一次次“有事我在”积累起来。",
+        traits: ["说走就走", "解决问题", "靠谱搭子"],
+        bestMatch: "损友默契组",
+        matchCopy: "你负责把想法落地，对方负责让气氛起飞。一个行动，一个接梗，组合起来几乎不会冷场。"
+      },
+      quiet: {
+        name: "安静同频型",
+        emoji: "🌙",
+        color: "#ffb3c7",
+        tagline: "不一定秒回，但一直把你放在心上。",
+        description: "你对关系有自己的节奏，尊重边界，也珍惜长期。你不靠热闹证明在乎，更擅长观察、倾听和默默兜底。懂得的人会发现，你的安静里一直留着位置，而且很难被替代。",
+        traits: ["会留空间", "观察细节", "低调长情"],
+        bestMatch: "人间充电站",
+        matchCopy: "对方不怕多说，你也不嫌热闹。一个把情绪说出来，一个稳稳接住，相处会越来越松弛。"
+      },
+      banter: {
+        name: "损友默契组",
+        emoji: "⚡",
+        color: "#caf36a",
+        tagline: "嘴上没一句好话，真有事第一个到。",
+        description: "熟人局里的气氛担当，大概就是你。你很会用玩笑卸下尴尬，也分得清什么时候该认真。别人看见的是互损，你真正给出的是“这么离谱也不会走”的底气。",
+        traits: ["懂你的梗", "嘴硬心软", "零客套关系"],
+        bestMatch: "随叫随到行动派",
+        matchCopy: "一个张罗出发，一个负责把局炒热。你们未必天天说想念，但一句“走不走”就足够。"
+      }
+    };
+
+    const QUESTIONS = [
+      {
+        text: "朋友深夜发来一句“在吗”，你会？",
+        answers: [
+          ["秒回：“怎么了，我在。”", "warm"],
+          ["直接打电话：“先别打字，说。”", "action"],
+          ["先等对方慢慢开口，问问现在还好吗", "quiet"],
+          ["丢个表情包暖场，再一本正经地问", "banter"]
+        ]
+      },
+      {
+        text: "周末突然空出一整天，你的第一反应是？",
+        answers: [
+          ["组个小局，把最近想见的人都叫上", "warm"],
+          ["立刻出发，周边随机逛一圈", "action"],
+          ["宅家放空，等熟悉的人来敲门", "quiet"],
+          ["拉上最熟的人去随机探店", "banter"]
+        ]
+      },
+      {
+        text: "和新朋友第一次见面，你通常？",
+        answers: [
+          ["主动接话，顺便照顾一下冷场", "warm"],
+          ["提议一起做点具体的事，边做边熟", "action"],
+          ["先观察一会儿，觉得对了再打开话匣子", "quiet"],
+          ["先开个无伤大雅的玩笑破冰", "banter"]
+        ]
+      },
+      {
+        text: "朋友失恋后来找你，你更可能？",
+        answers: [
+          ["陪聊到情绪落地，再一起骂两句", "warm"],
+          ["拉对方出门吃饭散步，先换个场", "action"],
+          ["安静陪着，需要纸巾时递纸巾", "quiet"],
+          ["先用玩笑缓冲，等气氛松了再说认真话", "banter"]
+        ]
+      },
+      {
+        text: "准备一份朋友生日礼物，你的路线是？",
+        answers: [
+          ["手写一段长消息，礼物要有点纪念感", "warm"],
+          ["直接订好行程或蛋糕，重点是当天安排明白", "action"],
+          ["送对方最近刚好需要的小东西", "quiet"],
+          ["做一本丑照合集，真情实感藏在吐槽里", "banter"]
+        ]
+      },
+      {
+        text: "朋友三个小时没回消息，你会怎么想？",
+        answers: [
+          ["有点担心，想确认是不是遇到事情了", "warm"],
+          ["直接打电话，确认一下最快", "action"],
+          ["很正常，等对方空下来再说", "quiet"],
+          ["发一句“失踪人口回归提醒”", "banter"]
+        ]
+      },
+      {
+        text: "朋友做了一个你不太认同的决定，你会？",
+        answers: [
+          ["先接住情绪，再慢慢把自己的担心说清楚", "warm"],
+          ["直接讲方案，必要时帮对方拉一把", "action"],
+          ["说清边界，把选择权留给对方", "quiet"],
+          ["先吐槽两句，再一起帮忙收拾残局", "banter"]
+        ]
+      },
+      {
+        text: "很久没见的朋友突然约你，你最先做什么？",
+        answers: [
+          ["先问近况，把见面安排成能好好聊天的那种", "warm"],
+          ["马上定时间地点，先把日子敲下来", "action"],
+          ["找个安静舒服的地方，人到了比安排重要", "quiet"],
+          ["见面先来一轮“你怎么还没混出来”的开场", "banter"]
+        ]
+      },
+      {
+        text: "群聊突然安静下来，你通常会？",
+        answers: [
+          ["抛个大家都接得住的话题暖场", "warm"],
+          ["直接发起线下活动，别在群里干聊", "action"],
+          ["继续潜水，看到重要消息再出现", "quiet"],
+          ["翻出一张神图，精准救场", "banter"]
+        ]
+      },
+      {
+        text: "你表达在意，最常用哪种方式？",
+        answers: [
+          ["记得细节，及时回应对方的变化", "warm"],
+          ["关键时刻到场，不让你一个人扛", "action"],
+          ["长期稳定地陪在旁边，不抢戏", "quiet"],
+          ["用只有彼此懂的梗，说一些反话", "banter"]
+        ]
+      },
+      {
+        text: "朋友这样评价你，你最想听到哪一句？",
+        answers: [
+          ["“和你在一起很安心。”", "warm"],
+          ["“有你在，事情一定办得成。”", "action"],
+          ["“你懂我没说出口的话。”", "quiet"],
+          ["“只有你能接住我的梗。”", "banter"]
+        ]
+      },
+      {
+        text: "对你来说，真正的“后会友期”是？",
+        answers: [
+          ["不管多久没见，坐下来还是熟悉", "warm"],
+          ["平时各忙各的，有事招呼就出发", "action"],
+          ["各自生活，心里一直留着位置", "quiet"],
+          ["再见先损两句，坐下就能聊一整晚", "banter"]
+        ]
+      }
+    ];
+
+    const answerKeys = ["warm", "action", "quiet", "banter"];
+    const answerLetters = ["A", "B", "C", "D"];
+    const screens = {
+      intro: document.getElementById("introScreen"),
+      quiz: document.getElementById("quizScreen"),
+      result: document.getElementById("resultScreen")
+    };
+    const state = {
+      current: 0,
+      answers: Array(QUESTIONS.length).fill(null),
+      playerName: "",
+      advancing: false,
+      resultKey: null,
+      scores: null
+    };
+
+    const $ = id => document.getElementById(id);
+    const startButton = $("startButton");
+    const playerName = $("playerName");
+    const backButton = $("backButton");
+    const answersEl = $("answers");
+    const progressFill = $("progressFill");
+    const progressBar = $("progressBar");
+    const progressLabel = $("progressLabel");
+    const progressPercent = $("progressPercent");
+    const toast = $("toast");
+    let toastTimer = null;
+
+    function showScreen(name) {
+      Object.entries(screens).forEach(([key, element]) => {
+        element.classList.toggle("is-active", key === name);
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function showToast(message) {
+      clearTimeout(toastTimer);
+      toast.textContent = message;
+      toast.classList.add("is-visible");
+      toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 2200);
+    }
+
+    function saveProgress() {
+      try {
+        localStorage.setItem("houshi-quiz-progress", JSON.stringify({
+          current: state.current,
+          answers: state.answers,
+          playerName: state.playerName
+        }));
+      } catch (_) {
+        // Progress saving is optional.
+      }
+    }
+
+    function loadProgress() {
+      try {
+        const saved = JSON.parse(localStorage.getItem("houshi-quiz-progress") || "null");
+        if (!saved || !Array.isArray(saved.answers) || saved.answers.length !== QUESTIONS.length) return false;
+        state.answers = saved.answers;
+        state.current = Math.min(Math.max(Number(saved.current) || 0, 0), QUESTIONS.length - 1);
+        state.playerName = String(saved.playerName || "").slice(0, 16);
+        playerName.value = state.playerName;
+        return state.answers.some(Boolean);
+      } catch (_) {
+        return false;
+      }
+    }
+
+    function clearProgress() {
+      try {
+        localStorage.removeItem("houshi-quiz-progress");
+      } catch (_) {
+        // Storage can be unavailable in private browsing.
+      }
+    }
+
+    function renderQuestion() {
+      const question = QUESTIONS[state.current];
+      const selected = state.answers[state.current];
+      const completed = state.answers.filter(Boolean).length;
+      const percent = Math.round((completed / QUESTIONS.length) * 100);
+
+      progressLabel.textContent = `第 ${state.current + 1} 题 / ${QUESTIONS.length}`;
+      progressPercent.textContent = `${percent}%`;
+      progressFill.style.width = `${percent}%`;
+      progressBar.setAttribute("aria-valuenow", String(percent));
+      backButton.disabled = state.current === 0;
+      $("questionIndex").textContent = `QUESTION ${String(state.current + 1).padStart(2, "0")}`;
+      $("questionText").textContent = question.text;
+      answersEl.innerHTML = "";
+
+      question.answers.forEach(([text, key], index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `answer${selected === key ? " is-selected" : ""}`;
+        button.innerHTML = `
+          <span class="answer-letter">${answerLetters[index]}</span>
+          <span class="answer-text">${text}</span>
+          <span class="answer-check" aria-hidden="true">✓</span>
+        `;
+        button.setAttribute("aria-pressed", selected === key ? "true" : "false");
+        button.addEventListener("click", () => chooseAnswer(key, button));
+        answersEl.appendChild(button);
+      });
+
+      $("progressBar").setAttribute("aria-label", `已完成 ${completed} / ${QUESTIONS.length} 题`);
+    }
+
+    function chooseAnswer(key, button) {
+      if (state.advancing) return;
+
+      state.answers[state.current] = key;
+      Array.from(answersEl.children).forEach(answer => {
+        answer.classList.remove("is-selected");
+        answer.setAttribute("aria-pressed", "false");
+      });
+      button.classList.add("is-selected");
+      button.setAttribute("aria-pressed", "true");
+
+      const completed = state.answers.filter(Boolean).length;
+      const percent = Math.round((completed / QUESTIONS.length) * 100);
+      progressPercent.textContent = `${percent}%`;
+      progressFill.style.width = `${percent}%`;
+      progressBar.setAttribute("aria-valuenow", String(percent));
+      saveProgress();
+
+      state.advancing = true;
+      setTimeout(() => {
+        state.advancing = false;
+        if (state.current < QUESTIONS.length - 1) {
+          state.current += 1;
+          renderQuestion();
+        } else {
+          showResult();
+        }
+      }, 330);
+    }
+
+    function calculateScores() {
+      return answerKeys.reduce((scores, key) => {
+        scores[key] = state.answers.filter(answer => answer === key).length;
+        return scores;
+      }, {});
+    }
+
+    function showResult(resultKeyFromUrl = null, scoresFromUrl = null) {
+      let resultKey = resultKeyFromUrl;
+      let scores = scoresFromUrl;
+
+      if (!resultKey) {
+        scores = calculateScores();
+        resultKey = answerKeys.reduce((best, key) => {
+          if (scores[key] !== scores[best]) return scores[key] > scores[best] ? key : best;
+          const lastIndex = key => state.answers.lastIndexOf(key);
+          return lastIndex(key) > lastIndex(best) ? key : best;
+        }, answerKeys[0]);
+      }
+
+      if (!RESULTS[resultKey]) resultKey = "warm";
+      if (!scores) scores = calculateScores();
+      if (Object.values(scores).reduce((sum, score) => sum + score, 0) === 0) {
+        scores = { warm: 0, action: 0, quiet: 0, banter: 0 };
+        answerKeys.filter(key => key !== resultKey).forEach(key => { scores[key] = 2; });
+        scores[resultKey] = QUESTIONS.length - 6;
+      }
+      state.resultKey = resultKey;
+      state.scores = scores;
+      const result = RESULTS[resultKey];
+      const total = Object.values(scores).reduce((sum, score) => sum + score, 0);
+      const safeName = state.playerName.trim().replace(/[<>&"']/g, "");
+      const matches = answerKeys
+        .filter(key => key !== resultKey)
+        .sort((a, b) => {
+          if (scores[b] !== scores[a]) return scores[b] - scores[a];
+          return answerKeys.indexOf(a) - answerKeys.indexOf(b);
+        });
+      const match = RESULTS[matches[0]];
+
+      $("resultEyebrow").textContent = safeName ? `${safeName}的友情使用说明书` : "你的友情使用说明书";
+      $("resultName").textContent = result.name;
+      $("resultTagline").textContent = result.tagline;
+      $("resultDescription").textContent = result.description;
+      $("resultBanner").style.setProperty("--result-color", result.color);
+      $("resultBanner").dataset.emoji = result.emoji;
+      $("bestMatchName").textContent = match.name;
+      $("bestMatchCopy").textContent = result.matchCopy;
+      $("resultTraits").innerHTML = result.traits
+        .map(trait => `<span class="trait"># ${trait}</span>`)
+        .join("");
+
+      $("scoreRows").innerHTML = answerKeys
+        .map(key => {
+          const count = scores[key];
+          const width = total ? Math.round((count / total) * 100) : 0;
+          return `
+            <div class="score-row">
+              <span>${RESULTS[key].emoji} ${shortName(key)}</span>
+              <span class="score-track"><span class="score-fill" style="display:block;width:${width}%;--row-color:${RESULTS[key].color}"></span></span>
+              <span>${width}%</span>
+            </div>
+          `;
+        })
+        .join("");
+
+      if (!resultKeyFromUrl) saveProgress();
+      showScreen("result");
+    }
+
+    function shortName(key) {
+      return {
+        warm: "充电站",
+        action: "行动派",
+        quiet: "同频型",
+        banter: "默契组"
+      }[key];
+    }
+
+    function beginQuiz(fresh = false) {
+      if (fresh) {
+        state.current = 0;
+        state.answers = Array(QUESTIONS.length).fill(null);
+        state.resultKey = null;
+        state.scores = null;
+        clearProgress();
+      }
+      state.playerName = playerName.value.trim().slice(0, 16) || state.playerName;
+      saveProgress();
+      renderQuestion();
+      showScreen("quiz");
+    }
+
+    function resetQuiz() {
+      state.current = 0;
+      state.answers = Array(QUESTIONS.length).fill(null);
+      state.playerName = "";
+      state.resultKey = null;
+      state.scores = null;
+      playerName.value = "";
+      clearProgress();
+      history.replaceState({}, "", location.pathname);
+      showScreen("intro");
+    }
+
+    async function copyText(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (_) {
+        const area = document.createElement("textarea");
+        area.value = text;
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        const copied = document.execCommand("copy");
+        area.remove();
+        return copied;
+      }
+    }
+
+    async function shareResult() {
+      const scores = state.scores || calculateScores();
+      const resultKey = state.resultKey || answerKeys.reduce((best, key) => {
+        if (scores[key] !== scores[best]) return scores[key] > scores[best] ? key : best;
+        return state.answers.lastIndexOf(key) > state.answers.lastIndexOf(best) ? key : best;
+      }, answerKeys[0]);
+      const result = RESULTS[resultKey];
+      const scoreParam = answerKeys.map(key => scores[key] || 0).join("-");
+      const url = `${location.origin}${location.pathname}?result=${resultKey}&s=${scoreParam}`;
+      const shareData = {
+        title: "后会友期测试",
+        text: `我的好友类型是「${result.name}」：${result.tagline} 你也来测测看？`,
+        url
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+          return;
+        } catch (error) {
+          if (error && error.name === "AbortError") return;
+        }
+      }
+
+      const copied = await copyText(`${shareData.text}\n${url}`);
+      showToast(copied ? "分享文案和链接已复制" : `结果链接：${url}`);
+    }
+
+    backButton.addEventListener("click", () => {
+      if (state.current === 0) return;
+      state.current -= 1;
+      renderQuestion();
+    });
+
+    let resumeAvailable = false;
+    startButton.addEventListener("click", () => {
+      beginQuiz(!resumeAvailable);
+      resumeAvailable = false;
+    });
+    playerName.addEventListener("keydown", event => {
+      if (event.key === "Enter") beginQuiz(true);
+    });
+    $("shareButton").addEventListener("click", shareResult);
+    $("restartButton").addEventListener("click", resetQuiz);
+
+    document.addEventListener("keydown", event => {
+      if (!screens.quiz.classList.contains("is-active") || state.advancing) return;
+      const index = answerLetters.indexOf(event.key.toUpperCase());
+      if (index >= 0) answersEl.children[index]?.click();
+    });
+
+    const params = new URLSearchParams(location.search);
+    const sharedResult = params.get("result");
+    const sharedScoreValues = (params.get("s") || "")
+      .split("-")
+      .map(value => Number(value))
+      .filter(value => Number.isFinite(value) && value >= 0 && value <= QUESTIONS.length);
+    const sharedScores = sharedScoreValues.length === answerKeys.length
+      ? Object.fromEntries(answerKeys.map((key, index) => [key, sharedScoreValues[index]]))
+      : null;
+    if (sharedResult && RESULTS[sharedResult]) {
+      $("restartButton").textContent = "我也来测一次";
+      showResult(sharedResult, sharedScores);
+    } else if (loadProgress()) {
+      resumeAvailable = true;
+      startButton.textContent = "继续上次测试 →";
+    }
+  </script>
+</body>
+</html>
