@@ -1,0 +1,1788 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#fff7e7">
+  <meta name="description" content="芒果TV《后会友期》非官方人物测试：10道情境题，测你更像节目中的哪一种旅程人格。">
+  <meta property="og:title" content="芒果《后会友期》人物测试">
+  <meta property="og:description" content="四组旧友，八种人物。你会在友情旅途中拿到谁的车票？">
+  <meta property="og:type" content="website">
+  <title>芒果《后会友期》人物测试｜你像节目里的谁？</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23ff7a21%22/><text x=%2250%22 y=%2268%22 text-anchor=%22middle%22 font-size=%2254%22 fill=%22white%22>M</text></svg>">
+  <style>
+    :root {
+      --cream: #fff7e7;
+      --paper: #fffdf7;
+      --ink: #17223c;
+      --muted: #666b76;
+      --mango: #ff7a21;
+      --mango-deep: #e9540d;
+      --yellow: #ffd94f;
+      --sky: #9bd7ff;
+      --mint: #b8e9c9;
+      --rose: #ffc1b2;
+      --line: rgba(23, 34, 60, .16);
+      --shadow: 7px 7px 0 var(--ink);
+      --radius: 26px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--cream);
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 9% 8%, rgba(255, 217, 79, .52) 0 5%, transparent 5.2%),
+        radial-gradient(circle at 92% 7%, rgba(155, 215, 255, .5) 0 7%, transparent 7.2%),
+        radial-gradient(circle at 85% 93%, rgba(255, 193, 178, .42) 0 8%, transparent 8.2%),
+        linear-gradient(180deg, rgba(255, 255, 255, .45), transparent 34%),
+        var(--cream);
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      pointer-events: none;
+      opacity: .22;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    a:focus-visible {
+      outline: 3px solid var(--sky);
+      outline-offset: 3px;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 19px 18px max(24px, env(safe-area-inset-bottom));
+    }
+
+    .header {
+      display: flex;
+      width: min(1100px, 100%);
+      margin: 0 auto;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .06em;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border: 2px solid var(--ink);
+      border-radius: 13px;
+      background: var(--mango);
+      color: #fff;
+      box-shadow: 3px 3px 0 var(--ink);
+      font-size: 20px;
+      font-weight: 950;
+      transform: rotate(-3deg);
+    }
+
+    .brand small {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .12em;
+      font-weight: 750;
+    }
+
+    .fan-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      background: var(--paper);
+      padding: 8px 12px;
+      font-size: 11px;
+      font-weight: 850;
+      box-shadow: 2px 2px 0 var(--ink);
+      transform: rotate(1deg);
+    }
+
+    .fan-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--mango);
+      box-shadow: 0 0 0 1.5px var(--ink);
+    }
+
+    main {
+      display: flex;
+      flex: 1;
+      width: min(1100px, 100%);
+      margin: 0 auto;
+      align-items: center;
+      justify-content: center;
+      padding: 34px 0 40px;
+    }
+
+    .screen {
+      display: none;
+      width: 100%;
+      animation: enter .42s cubic-bezier(.2, .75, .25, 1);
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    @keyframes enter {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Landing */
+    .landing {
+      display: grid;
+      grid-template-columns: minmax(0, 1.14fr) minmax(330px, .86fr);
+      gap: clamp(35px, 6vw, 74px);
+      align-items: center;
+    }
+
+    .official-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 23px;
+      color: var(--mango-deep);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .11em;
+    }
+
+    .official-line::before {
+      content: "";
+      width: 29px;
+      height: 3px;
+      border-radius: 4px;
+      background: var(--mango);
+    }
+
+    .landing h1 {
+      max-width: 680px;
+      margin: 0;
+      font-size: clamp(48px, 8vw, 91px);
+      line-height: .99;
+      letter-spacing: -.075em;
+      font-weight: 950;
+    }
+
+    .landing h1 .accent {
+      position: relative;
+      display: inline-block;
+      z-index: 0;
+    }
+
+    .landing h1 .accent::after {
+      content: "";
+      position: absolute;
+      right: -.03em;
+      bottom: .02em;
+      left: -.03em;
+      height: .31em;
+      border-radius: 8px;
+      background: var(--yellow);
+      z-index: -1;
+      transform: rotate(-1.4deg);
+    }
+
+    .landing h1 .outline {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 2px var(--ink);
+      font-size: .72em;
+      letter-spacing: -.055em;
+      margin-top: 7px;
+    }
+
+    .landing-copy {
+      max-width: 600px;
+      margin: 26px 0 0;
+      color: #505765;
+      font-size: clamp(15px, 1.9vw, 18px);
+      line-height: 1.85;
+      font-weight: 500;
+    }
+
+    .landing-copy strong {
+      color: var(--ink);
+      font-weight: 900;
+      box-shadow: inset 0 -.5em rgba(255, 217, 79, .62);
+    }
+
+    .route-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 24px;
+    }
+
+    .route-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      background: rgba(255, 253, 247, .88);
+      padding: 8px 11px;
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    .route-pill i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--dot, var(--mango));
+      border: 1px solid var(--ink);
+    }
+
+    .start-card {
+      position: relative;
+      border: 2px solid var(--ink);
+      border-radius: var(--radius);
+      background: var(--paper);
+      padding: clamp(23px, 4vw, 34px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .start-card::before,
+    .start-card::after {
+      content: "";
+      position: absolute;
+      top: 95px;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      background: var(--cream);
+    }
+
+    .start-card::before {
+      left: -12px;
+    }
+
+    .start-card::after {
+      right: -12px;
+    }
+
+    .ticket-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 20px;
+      border-bottom: 1.5px dashed var(--ink);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+
+    .ticket-head span:last-child {
+      color: var(--mango-deep);
+    }
+
+    .people-stack {
+      display: flex;
+      margin: 22px 0 19px;
+    }
+
+    .mini-person {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      margin-right: -9px;
+      place-items: center;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      background: var(--avatar, var(--yellow));
+      font-size: 13px;
+      font-weight: 950;
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .mini-person:last-child {
+      margin-left: 6px;
+      border-style: dashed;
+      background: var(--paper);
+      font-size: 18px;
+    }
+
+    .start-card h2 {
+      margin: 0 0 7px;
+      font-size: 25px;
+      letter-spacing: -.045em;
+      line-height: 1.2;
+      font-weight: 950;
+    }
+
+    .start-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+      font-weight: 600;
+    }
+
+    .field-wrap {
+      margin-top: 22px;
+    }
+
+    .field-label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .name-input {
+      width: 100%;
+      border: 1.5px solid var(--ink);
+      border-radius: 13px;
+      background: #fff;
+      padding: 13px 14px;
+      color: var(--ink);
+      font-size: 15px;
+      transition: box-shadow .16s, transform .16s;
+    }
+
+    .name-input:focus {
+      outline: 0;
+      box-shadow: 4px 4px 0 var(--sky);
+      transform: translate(-1px, -1px);
+    }
+
+    .name-input::placeholder {
+      color: #9a9ba1;
+    }
+
+    .primary,
+    .secondary,
+    .share {
+      width: 100%;
+      min-height: 53px;
+      border: 2px solid var(--ink);
+      border-radius: 14px;
+      padding: 12px 17px;
+      font-weight: 950;
+      cursor: pointer;
+      transition: transform .14s, box-shadow .14s;
+    }
+
+    .primary {
+      margin-top: 16px;
+      background: var(--mango);
+      color: #fff;
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .primary:hover,
+    .share:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0 var(--ink);
+    }
+
+    .primary:active,
+    .secondary:active,
+    .share:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+
+    .fine-print {
+      margin-top: 12px !important;
+      color: var(--muted) !important;
+      font-size: 10px !important;
+      line-height: 1.5 !important;
+      text-align: center;
+    }
+
+    /* Quiz */
+    .quiz-wrap {
+      width: min(760px, 100%);
+      margin: 0 auto;
+    }
+
+    .quiz-top {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 17px;
+    }
+
+    .back {
+      display: grid;
+      flex: 0 0 auto;
+      width: 41px;
+      height: 41px;
+      place-items: center;
+      border: 1.5px solid var(--ink);
+      border-radius: 50%;
+      background: var(--paper);
+      box-shadow: 2px 2px 0 var(--ink);
+      cursor: pointer;
+      font-size: 19px;
+    }
+
+    .back:disabled {
+      visibility: hidden;
+    }
+
+    .progress {
+      flex: 1;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 7px;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .progress-meta span:last-child {
+      color: var(--mango-deep);
+    }
+
+    .progress-track {
+      height: 10px;
+      overflow: hidden;
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      background: var(--paper);
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      border-right: 1.5px solid var(--ink);
+      border-radius: inherit;
+      background: var(--mango);
+      transition: width .35s cubic-bezier(.22, .8, .24, 1);
+    }
+
+    .question-card {
+      position: relative;
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      border-radius: 25px;
+      background: var(--paper);
+      padding: clamp(24px, 5vw, 42px);
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+
+    .question-card::after {
+      content: attr(data-mark);
+      position: absolute;
+      right: 22px;
+      top: 10px;
+      color: var(--mango);
+      font-size: 82px;
+      line-height: 1;
+      font-weight: 950;
+      opacity: .08;
+      pointer-events: none;
+    }
+
+    .question-label {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: var(--mango-deep);
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: .1em;
+    }
+
+    .question-label::before {
+      content: "●";
+      font-size: 7px;
+    }
+
+    .question-title {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 24px;
+      font-size: clamp(24px, 4.7vw, 35px);
+      line-height: 1.38;
+      letter-spacing: -.04em;
+      font-weight: 950;
+    }
+
+    .answers {
+      display: grid;
+      gap: 10px;
+    }
+
+    .answer {
+      position: relative;
+      display: grid;
+      grid-template-columns: 30px 1fr 20px;
+      gap: 11px;
+      align-items: center;
+      width: 100%;
+      min-height: 58px;
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      padding: 11px 13px;
+      text-align: left;
+      cursor: pointer;
+      transition: transform .15s, border-color .15s, background .15s, box-shadow .15s;
+    }
+
+    .answer:hover {
+      border-color: var(--ink);
+      background: var(--cream);
+      transform: translateX(3px);
+    }
+
+    .answer.selected {
+      border: 2px solid var(--ink);
+      background: var(--yellow);
+      box-shadow: 3px 3px 0 var(--ink);
+      transform: translate(-2px, -2px);
+    }
+
+    .answer-letter {
+      display: grid;
+      width: 28px;
+      height: 28px;
+      place-items: center;
+      border: 1.5px solid var(--ink);
+      border-radius: 9px;
+      background: var(--paper);
+      font-size: 11px;
+      font-weight: 950;
+    }
+
+    .answer-text {
+      font-size: 14px;
+      line-height: 1.55;
+      font-weight: 700;
+    }
+
+    .answer-check {
+      display: grid;
+      width: 20px;
+      height: 20px;
+      place-items: center;
+      border: 1.5px solid var(--ink);
+      border-radius: 50%;
+      background: var(--paper);
+      font-size: 11px;
+      font-weight: 950;
+      opacity: 0;
+      transform: scale(.5);
+      transition: opacity .15s, transform .15s;
+    }
+
+    .answer.selected .answer-check {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .quiz-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .quiz-bottom span:first-child::before {
+      content: "朋友没有标准答案，选第一反应";
+    }
+
+    .phase-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border-radius: 999px;
+      background: var(--paper);
+      padding: 5px 8px;
+      border: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    /* Result */
+    .result-wrap {
+      width: min(850px, 100%);
+      margin: 0 auto;
+    }
+
+    .result-card {
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      border-radius: 30px;
+      background: var(--paper);
+      box-shadow: 8px 8px 0 var(--ink);
+    }
+
+    .result-hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(27px, 5vw, 46px);
+      border-bottom: 2px solid var(--ink);
+      background: var(--result-color, var(--yellow));
+    }
+
+    .result-hero::after {
+      content: attr(data-initial);
+      position: absolute;
+      right: 2%;
+      bottom: -60px;
+      color: var(--ink);
+      font-size: clamp(180px, 31vw, 285px);
+      line-height: 1;
+      font-weight: 950;
+      letter-spacing: -.12em;
+      opacity: .07;
+      pointer-events: none;
+    }
+
+    .result-kicker {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      background: var(--paper);
+      padding: 7px 11px;
+      font-size: 11px;
+      font-weight: 950;
+    }
+
+    .result-kicker::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--mango);
+      box-shadow: 0 0 0 1.5px var(--ink);
+    }
+
+    .result-name {
+      position: relative;
+      z-index: 1;
+      margin: 24px 0 6px;
+      font-size: clamp(52px, 10vw, 86px);
+      line-height: 1;
+      letter-spacing: -.075em;
+      font-weight: 950;
+    }
+
+    .result-type {
+      position: relative;
+      z-index: 1;
+      display: block;
+      margin-bottom: 13px;
+      font-size: clamp(19px, 3vw, 25px);
+      font-weight: 950;
+    }
+
+    .result-tagline {
+      position: relative;
+      z-index: 1;
+      max-width: 610px;
+      margin: 0;
+      font-size: clamp(15px, 2.4vw, 18px);
+      line-height: 1.65;
+      font-weight: 750;
+    }
+
+    .result-body {
+      padding: clamp(25px, 5vw, 43px);
+    }
+
+    .result-description {
+      max-width: 710px;
+      margin: 0 0 22px;
+      color: #465061;
+      font-size: 15px;
+      line-height: 1.9;
+      font-weight: 550;
+    }
+
+    .traits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 26px;
+    }
+
+    .trait {
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      background: var(--cream);
+      padding: 7px 11px;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .info-card {
+      border: 1.5px solid var(--ink);
+      border-radius: 18px;
+      background: #fff;
+      padding: 19px;
+    }
+
+    .info-card.route-card {
+      background: var(--cream);
+    }
+
+    .info-label {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+
+    .route-name {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 20px;
+      line-height: 1.3;
+      letter-spacing: -.025em;
+      font-weight: 950;
+    }
+
+    .info-copy {
+      margin: 0;
+      color: #5e616a;
+      font-size: 12px;
+      line-height: 1.7;
+      font-weight: 600;
+    }
+
+    .counterpart {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .counterpart-avatar {
+      display: grid;
+      flex: 0 0 auto;
+      width: 45px;
+      height: 45px;
+      place-items: center;
+      border: 1.5px solid var(--ink);
+      border-radius: 50%;
+      background: var(--counter-color, var(--sky));
+      box-shadow: 2px 2px 0 var(--ink);
+      font-weight: 950;
+    }
+
+    .counterpart-name {
+      font-size: 17px;
+      font-weight: 950;
+    }
+
+    .score-block {
+      margin-top: 24px;
+      padding-top: 22px;
+      border-top: 1.5px dashed var(--line);
+    }
+
+    .score-title {
+      margin: 0 0 14px;
+      font-size: 12px;
+      font-weight: 950;
+    }
+
+    .score-row {
+      display: grid;
+      grid-template-columns: 92px 1fr 30px;
+      gap: 9px;
+      align-items: center;
+      margin-top: 9px;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .score-track {
+      height: 8px;
+      overflow: hidden;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      background: var(--cream);
+    }
+
+    .score-fill {
+      display: block;
+      height: 100%;
+      border-right: 1px solid var(--ink);
+      border-radius: inherit;
+      background: var(--row-color, var(--mango));
+    }
+
+    .result-actions {
+      display: grid;
+      grid-template-columns: 1fr .7fr;
+      gap: 11px;
+      margin-top: 19px;
+    }
+
+    .share {
+      background: var(--ink);
+      color: #fff;
+      box-shadow: 4px 4px 0 var(--mango);
+    }
+
+    .secondary {
+      margin-top: 0;
+      background: var(--paper);
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    .disclaimer {
+      margin: 15px 0 0;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 60;
+      left: 50%;
+      bottom: max(24px, env(safe-area-inset-bottom));
+      width: max-content;
+      max-width: calc(100vw - 32px);
+      border: 2px solid var(--ink);
+      border-radius: 12px;
+      background: var(--ink);
+      color: #fff;
+      padding: 11px 16px;
+      font-size: 12px;
+      font-weight: 850;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 14px);
+      transition: opacity .2s, transform .2s;
+    }
+
+    .toast.visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    footer {
+      display: flex;
+      width: min(1100px, 100%);
+      margin: 0 auto;
+      justify-content: space-between;
+      gap: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.5;
+      font-weight: 650;
+    }
+
+    footer a {
+      color: var(--ink);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        padding: 15px 13px max(18px, env(safe-area-inset-bottom));
+      }
+
+      .fan-badge {
+        display: none;
+      }
+
+      main {
+        align-items: flex-start;
+        padding: 40px 0 34px;
+      }
+
+      .landing {
+        grid-template-columns: 1fr;
+        gap: 38px;
+      }
+
+      .landing h1 {
+        font-size: clamp(48px, 15.5vw, 72px);
+      }
+
+      .landing h1 .outline {
+        font-size: .56em;
+        line-height: 1.16;
+        margin-top: 12px;
+      }
+
+      .route-strip {
+        display: none;
+      }
+
+      .start-card {
+        box-shadow: 5px 5px 0 var(--ink);
+      }
+
+      .question-card {
+        padding: 22px 17px 24px;
+        border-radius: 20px;
+        box-shadow: 4px 4px 0 var(--ink);
+      }
+
+      .question-title {
+        font-size: clamp(22px, 6.4vw, 30px);
+      }
+
+      .answer {
+        grid-template-columns: 28px 1fr 19px;
+        gap: 9px;
+        min-height: 55px;
+        padding: 9px;
+      }
+
+      .answer-text {
+        font-size: 13px;
+      }
+
+      .quiz-bottom span:first-child::before {
+        content: "选第一反应";
+      }
+
+      .result-card {
+        border-radius: 23px;
+        box-shadow: 5px 5px 0 var(--ink);
+      }
+
+      .result-hero {
+        padding: 26px 21px 29px;
+      }
+
+      .result-body {
+        padding: 23px 19px 21px;
+      }
+
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .result-actions {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        justify-content: center;
+        text-align: center;
+      }
+
+      footer > span:last-child {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="brand">
+        <span class="brand-mark">M</span>
+        <span>
+          后会友期人物测试
+          <small>MANGO TV · FAN-MADE QUIZ</small>
+        </span>
+      </div>
+      <span class="fan-badge">非官方粉丝向测试</span>
+    </header>
+
+    <main>
+      <section class="screen active" id="landingScreen" aria-labelledby="landingTitle">
+        <div class="landing">
+          <div>
+            <span class="official-line">芒果TV《后会友期》· 人物匹配</span>
+            <h1 id="landingTitle">
+              <span>后会<span class="accent">友期</span></span>
+              <span class="outline">你是节目里的谁？</span>
+            </h1>
+            <p class="landing-copy">
+              四组多年后重新见面的旧友，八种处理亲密、边界和遗憾的方式。通过 10 道情景题，看看这趟友情旅途中，<strong>你最像哪一位旅程人物。</strong>
+            </p>
+            <div class="route-strip" aria-label="节目中的四组旧友">
+              <span class="route-pill"><i style="--dot: var(--yellow)"></i>张萌 × 马天宇</span>
+              <span class="route-pill"><i style="--dot: var(--sky)"></i>厉娜 × 许飞</span>
+              <span class="route-pill"><i style="--dot: var(--rose)"></i>文吉儿 × 王子璇</span>
+              <span class="route-pill"><i style="--dot: var(--mint)"></i>青稚 × 白小纯</span>
+            </div>
+          </div>
+
+          <div class="start-card">
+            <div class="ticket-head">
+              <span>FRIENDSHIP PASS</span>
+              <span>10 QUESTIONS</span>
+            </div>
+            <div class="people-stack" aria-hidden="true">
+              <span class="mini-person" style="--avatar:#ffd94f">萌</span>
+              <span class="mini-person" style="--avatar:#9bd7ff">宇</span>
+              <span class="mini-person" style="--avatar:#ffc1b2">娜</span>
+              <span class="mini-person" style="--avatar:#b8e9c9">飞</span>
+              <span class="mini-person">+</span>
+            </div>
+            <h2>领取你的友情车票</h2>
+            <p>8 道关系底色题 + 2 道人物区分题<br>大约 2 分钟，题目无标准答案。</p>
+            <div class="field-wrap">
+              <label class="field-label" for="nickname">怎么称呼你？（选填）</label>
+              <input class="name-input" id="nickname" type="text" maxlength="16" autocomplete="nickname" placeholder="留空也可以">
+            </div>
+            <button class="primary" id="startButton" type="button">开始人物匹配 →</button>
+            <p class="fine-print">含节目人物关系轻量提示 · 答案不会上传</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="quizScreen" aria-labelledby="questionTitle">
+        <div class="quiz-wrap">
+          <div class="quiz-top">
+            <button class="back" id="backButton" type="button" aria-label="上一题">←</button>
+            <div class="progress">
+              <div class="progress-meta">
+                <span id="progressLabel">第 1 题 / 10</span>
+                <span id="progressPercent">0%</span>
+              </div>
+              <div class="progress-track" id="progressTrack" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="question-card" id="questionCard" data-mark="01">
+            <div class="question-label" id="questionLabel">关系底色</div>
+            <h2 class="question-title" id="questionTitle"></h2>
+            <div class="answers" id="answers"></div>
+          </div>
+
+          <div class="quiz-bottom">
+            <span></span>
+            <span class="phase-pill" id="phasePill">旅程人格阶段</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="resultScreen" aria-labelledby="resultName">
+        <div class="result-wrap">
+          <article class="result-card">
+            <div class="result-hero" id="resultHero" data-initial="萌">
+              <span class="result-kicker" id="resultKicker">你的后会友期人物</span>
+              <h2 class="result-name" id="resultName">张萌</h2>
+              <span class="result-type" id="resultType">直球照顾者</span>
+              <p class="result-tagline" id="resultTagline"></p>
+            </div>
+            <div class="result-body">
+              <p class="result-description" id="resultDescription"></p>
+              <div class="traits" id="resultTraits"></div>
+
+              <div class="result-grid">
+                <div class="info-card route-card">
+                  <span class="info-label">你的旧友线</span>
+                  <span class="route-name" id="routeName"></span>
+                  <p class="info-copy" id="routeCopy"></p>
+                </div>
+                <div class="info-card">
+                  <span class="info-label">这条线的另一端</span>
+                  <div class="counterpart">
+                    <span class="counterpart-avatar" id="counterpartAvatar"></span>
+                    <span class="counterpart-name" id="counterpartName"></span>
+                  </div>
+                  <p class="info-copy" id="counterpartCopy"></p>
+                </div>
+              </div>
+
+              <div class="score-block">
+                <h3 class="score-title">你的关系底色</h3>
+                <div id="scoreRows"></div>
+              </div>
+
+              <div class="result-actions">
+                <button class="share" id="shareButton" type="button">分享我的人物车票 ↗</button>
+                <button class="secondary" id="restartButton" type="button">重新测试</button>
+              </div>
+              <p class="disclaimer">人物解读基于节目公开呈现，仅供娱乐，不代表嘉宾本人。图片均以文字与图形示意，不使用嘉宾肖像。</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>非官方粉丝测试 · 节目人物来自 <a href="https://www.mgtv.com/h/914227.html" target="_blank" rel="noopener noreferrer">芒果TV《后会友期》</a></span>
+      <span>I MISS YOU · FRIENDSHIP ROUTE</span>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const PAIRS = {
+      care: {
+        name: "主动照顾线",
+        people: "张萌 × 马天宇",
+        color: "#ffd94f",
+        copy: "一个人把关心说出口，一个人把在意藏在观察里。共同点是都在乎，只是靠近方式一热一慢。"
+      },
+      memory: {
+        name: "旧日同频线",
+        people: "厉娜 × 许飞",
+        color: "#9bd7ff",
+        copy: "一段关系过去很久，记忆仍然有重量。有人珍藏旧日，有人接受距离，但都没有真的忘记。"
+      },
+      boundary: {
+        name: "清醒边界线",
+        people: "文吉儿 × 王子璇",
+        color: "#ffc1b2",
+        copy: "友情里除了感情，也有承诺、付出和体面。想讲清楚的人与想及时止损的人，常常卡在同一件事上。"
+      },
+      battle: {
+        name: "热烈磨合线",
+        people: "青稚 × 白小纯",
+        color: "#b8e9c9",
+        copy: "一起赢过，也一起拧巴过。默契并不总是温柔，有时是在目标、认可和情绪里反复碰撞。"
+      }
+    };
+
+    const PEOPLE = {
+      zhangmeng: {
+        name: "张萌",
+        initial: "萌",
+        type: "直球照顾者",
+        pair: "care",
+        color: "#ffd94f",
+        tagline: "先把人照顾好，再问到底哪里不对。",
+        description: "你不太怕把话挑明，也习惯主动确认每个人的状态。朋友眼里的你，常常是那个张罗见面、打破沉默、把局面往前推的人。你的认真很有存在感；只是当别人用更慢的方式回应时，你偶尔会把沉默误读成不在意。",
+        traits: ["主动破冰", "照顾全场", "情绪不藏"],
+        counter: "matianyu",
+        routeCopy: "张萌与马天宇这条线，像一团明火遇到一片安静的湖。一个主动靠近，一个需要空间，关心同频，表达却并不同速。",
+        counterCopy: "马天宇的慢热与观察，会让你意识到：没有立刻回应，不等于没有把你放在心上。"
+      },
+      matianyu: {
+        name: "马天宇",
+        initial: "宇",
+        type: "慢慢靠近的观察者",
+        pair: "care",
+        color: "#ffd94f",
+        tagline: "不抢着说话，却把每个人看在眼里。",
+        description: "你更习惯先观察环境，再决定把哪一部分交出去。你重视私密感，不轻易把“朋友”叫出口；一旦在意，会记住别人没说出口的细节。你的难点不是不在乎，而是常常把需要藏得太好，让主动的人猜得很累。",
+        traits: ["慢热", "高敏感", "私密感强"],
+        counter: "zhangmeng",
+        routeCopy: "马天宇与张萌这条线，是内敛与直接的对望。一个怕打扰，一个怕被忽视；两种小心翼翼，未必能被对方立刻读懂。",
+        counterCopy: "张萌的主动像一盏亮着的灯。你不需要立刻走到灯下，但偶尔回应一下，会让关系少很多猜测。"
+      },
+      lina: {
+        name: "厉娜",
+        initial: "娜",
+        type: "旧日记忆收藏家",
+        pair: "memory",
+        color: "#9bd7ff",
+        tagline: "时间走远了，有些片段还停在原处。",
+        description: "你重感情，也很容易被共同经历击中。旧照片、旧聊天、某首歌，都可能把一段关系重新带回眼前。你不一定擅长当下表达，却会在心里给老朋友留很久的位置。你的柔软是珍贵的，但有时也会让你反复追问一个早已没有答案的“为什么”。",
+        traits: ["念旧", "长情", "容易内耗"],
+        counter: "xufei",
+        routeCopy: "厉娜与许飞这条线，连接着很长的一段共同记忆。一个频频回望，一个更愿意把过去放回过去。",
+        counterCopy: "许飞的清醒会提醒你：珍视回忆和继续生活并不冲突，有些关系不需要结论才算完整。"
+      },
+      xufei: {
+        name: "许飞",
+        initial: "飞",
+        type: "清醒边界派",
+        pair: "memory",
+        color: "#9bd7ff",
+        tagline: "珍惜发生过的事，也接受关系会过期。",
+        description: "你习惯把感情和边界分开看。你并不冷漠，只是不愿意用反复拉扯证明在乎。对走远的人和事，你更倾向于承认遗憾，然后把生活继续往前过。你的清醒会保护自己，也可能让重感情的人觉得你太早放下了。",
+        traits: ["边界清楚", "坦率", "理性消化"],
+        counter: "lina",
+        routeCopy: "许飞与厉娜这条线，是关于旧友情能否重新靠近。一个强调当下的边界，一个仍然被过去牵动。",
+        counterCopy: "厉娜的念旧不是纠缠，而是她认真保存关系的方式。偶尔允许情绪多说一句，会让你的清醒更有温度。"
+      },
+      wenjier: {
+        name: "文吉儿",
+        initial: "文",
+        type: "把话讲明白的人",
+        pair: "boundary",
+        color: "#ffc1b2",
+        tagline: "比起假装没事，你更需要一个明确的答案。",
+        description: "你在关系里有很强的解释欲和确认欲。发生了什么、谁做了什么、承诺有没有兑现，你希望这些能被摊开说清。你并不是只盯着旧账，而是相信认真复盘才可能真正翻篇。只是当对方只想尽快结束冲突时，你的清楚可能被听成逼迫。",
+        traits: ["重视公平", "表达完整", "渴望修复"],
+        counter: "wangzixuan",
+        routeCopy: "文吉儿与王子璇这条线，把友情里的付出、承诺与体面摆到了台面上。一个人想要说清，一个人决定不再内耗。",
+        counterCopy: "王子璇的止损不是没感情，而是拒绝让一段关系继续消耗自己。分清“想修复”和“能修复”，你会轻一点。"
+      },
+      wangzixuan: {
+        name: "王子璇",
+        initial: "璇",
+        type: "体面的止损者",
+        pair: "boundary",
+        color: "#ffc1b2",
+        tagline: "关系可以有遗憾，但不必一直被消耗。",
+        description: "你做事有分寸，也看重自己的付出被尊重。出现问题后，你未必愿意无限复盘，更在意对方接下来是否真正改变了边界和做法。你能接受一段关系停在遗憾里，不允许它继续侵占生活。别人可能觉得你冷，其实你只是更早决定保护自己。",
+        traits: ["原则明确", "及时止损", "行动优先"],
+        counter: "wenjier",
+        routeCopy: "王子璇与文吉儿这条线，像一场关于承诺和体面的对账。有人要解释，有人要行动，双方都在争取自己的公平。",
+        counterCopy: "文吉儿坚持说清楚，背后也是希望关系能被认真对待。拒绝内耗不等于拒绝理解。"
+      },
+      qingzhi: {
+        name: "青稚",
+        initial: "稚",
+        type: "冷静的任务脑",
+        pair: "battle",
+        color: "#b8e9c9",
+        tagline: "先把事情做好，情绪有时来得慢半拍。",
+        description: "你擅长在压力和目标里找办法，遇到问题会先看流程、结果和怎么解决。你不太习惯处理复杂的情绪信号，容易觉得“事情做好不就行了”。你的可靠常常藏在行动里；如果能在效率之外多问一句“你现在感觉怎么样”，关系会少很多错位。",
+        traits: ["目标导向", "冷静执行", "情绪慢半拍"],
+        counter: "baixiaochun",
+        routeCopy: "青稚与白小纯这条线，带着队友之间特有的高要求和强绑定。一个盯着怎样赢，一个也在乎赢，但更需要被看见。",
+        counterCopy: "白小纯的情绪并不只是“添麻烦”，那可能是他对关系和认可的认真。答案之外，也要回应感受。"
+      },
+      baixiaochun: {
+        name: "白小纯",
+        initial: "纯",
+        type: "热烈要回应的人",
+        pair: "battle",
+        color: "#b8e9c9",
+        tagline: "可以吃苦，但不能被当作理所当然。",
+        description: "你对关系投入得直接，也很在意自己的努力有没有被看见。开心、委屈、不服气，你都很难完全藏住。你愿意并肩作战，但希望对方同样重视你的感受和位置。你的热烈能把关系点燃，也可能在没得到回应时变成一场更激烈的碰撞。",
+        traits: ["高投入", "反应直接", "需要认可"],
+        counter: "qingzhi",
+        routeCopy: "白小纯与青稚这条线，是并肩作战后的爱与怨。一个需要被看见，一个习惯先解决问题，默契里夹着没说完的话。",
+        counterCopy: "青稚的冷静不是不在乎，只是情绪处理器转得慢一点。把需要说得更具体，比等对方猜更快抵达。"
+      }
+    };
+
+    const GLOBAL_QUESTIONS = [
+      {
+        title: "行李箱摊开，你最先放进什么？",
+        answers: [
+          ["集合时间、常用药和所有人的联系方式，先确认一遍。", "care"],
+          ["耳机和一本旧书，给自己留一点安静。", "memory"],
+          ["花费怎么分、行程怎么改，直接写进群公告。", "boundary"],
+          ["桌游和音箱，先玩熟了再聊认真话题。", "battle"]
+        ]
+      },
+      {
+        title: "一群人商量旅行，你通常会是什么角色？",
+        answers: [
+          ["主动接话、照顾冷场，顺便确认大家有没有被落下。", "care"],
+          ["不急着发言，先观察谁和谁更自在。", "memory"],
+          ["先把时间、预算和责任分配说明白。", "boundary"],
+          ["先把气氛炒热，具体细节边走边定。", "battle"]
+        ]
+      },
+      {
+        title: "朋友说“我没事”，你更相信哪种判断？",
+        answers: [
+          ["多少能感觉到不对，会找机会再问一次。", "care"],
+          ["不会硬拆穿，但会把这件事默默记住。", "memory"],
+          ["会直接说：“你看起来不像没事。”", "boundary"],
+          ["先尊重对方不想讲，转个轻松话题。", "battle"]
+        ]
+      },
+      {
+        title: "关系里出现冲突，你的第一反应是？",
+        answers: [
+          ["当面问清，不想让误会继续滚大。", "care"],
+          ["先退开，回去把前因后果想很多遍。", "memory"],
+          ["梳理发生了什么，确认责任和边界。", "boundary"],
+          ["先冷一会儿，等一起做点事时再自然翻篇。", "battle"]
+        ]
+      },
+      {
+        title: "和多年没见的朋友重逢，你最在意什么？",
+        answers: [
+          ["对方现在过得好不好，想先把近况聊透。", "care"],
+          ["彼此还记得当年的那些细节。", "memory"],
+          ["当初为什么走散，这次能不能说清楚。", "boundary"],
+          ["还能不能像以前一样并肩做点事。", "battle"]
+        ]
+      },
+      {
+        title: "约好的见面临时取消，你更容易怎么处理？",
+        answers: [
+          ["先问对方是不是遇到什么难处。", "care"],
+          ["嘴上说没关系，失落会在心里留一阵。", "memory"],
+          ["确认新的时间，也说明临时取消对你的影响。", "boundary"],
+          ["表面迅速翻篇，转头去忙别的。", "battle"]
+        ]
+      },
+      {
+        title: "一起吃饭结账时，有人一直没有提 AA，你会？",
+        answers: [
+          ["先垫上，之后找合适时机轻轻提醒。", "care"],
+          ["不想把气氛弄僵，可能就先算了。", "memory"],
+          ["当场把账单发群里，直接按约定处理。", "boundary"],
+          ["开玩笑点一句，再把事情解决。", "battle"]
+        ]
+      },
+      {
+        title: "哪一种关于友情的说法，最像你的内心？",
+        answers: [
+          ["真正在意的人，我会主动靠近。", "care"],
+          ["有些人不常联系，也会一直留在心里。", "memory"],
+          ["长久关系靠边界，也靠兑现承诺。", "boundary"],
+          ["吵过、拧巴过，还愿意并肩，才是我的默契。", "battle"]
+        ]
+      }
+    ];
+
+    const TIE_QUESTIONS = {
+      care: [
+        {
+          title: "聚会突然冷场，你更可能怎么做？",
+          answers: [
+            ["主动抛话题，把大家都拉进聊天。", "zhangmeng"],
+            ["先看谁有些不自在，再私下递一句关心。", "matianyu"]
+          ]
+        },
+        {
+          title: "朋友连续几次回复很慢，你会？",
+          answers: [
+            ["直接问：“你最近是不是有点躲我？”", "zhangmeng"],
+            ["不追问，但会默默留意对方的状态。", "matianyu"]
+          ]
+        }
+      ],
+      memory: [
+        {
+          title: "深夜翻到一段旧聊天，你通常会？",
+          answers: [
+            ["忍不住多看几遍，情绪也跟着回来。", "lina"],
+            ["感慨一下，确认那段记忆重要过就够了。", "xufei"]
+          ]
+        },
+        {
+          title: "看到走散的朋友更新动态，你会？",
+          answers: [
+            ["还是会在意对方过得好不好。", "lina"],
+            ["默默看完，尊重彼此现在的生活。", "xufei"]
+          ]
+        }
+      ],
+      boundary: [
+        {
+          title: "朋友请你帮一个明显超出能力的忙，你会？",
+          answers: [
+            ["把自己的难处和理由说清楚，希望对方理解。", "wenjier"],
+            ["礼貌拒绝，不打算反复解释或内疚。", "wangzixuan"]
+          ]
+        },
+        {
+          title: "一次合作出了问题，你最想先解决什么？",
+          answers: [
+            ["先把时间线、承诺和责任对清楚。", "wenjier"],
+            ["先把问题处理掉，再划清以后合作的边界。", "wangzixuan"]
+          ]
+        }
+      ],
+      battle: [
+        {
+          title: "团队任务压力很大时，你更在意？",
+          answers: [
+            ["流程是否高效，最后能不能把事情做成。", "qingzhi"],
+            ["大家有没有彼此信任，付出有没有被看见。", "baixiaochun"]
+          ]
+        },
+        {
+          title: "和重要搭档发生争执后，你更容易？",
+          answers: [
+            ["先冷静下来，回到任务里继续推进。", "qingzhi"],
+            ["需要对方给出态度，否则很难真正过去。", "baixiaochun"]
+          ]
+        }
+      ]
+    };
+
+    const pairKeys = Object.keys(PAIRS);
+    const letters = ["A", "B", "C", "D"];
+    const screens = {
+      landing: document.getElementById("landingScreen"),
+      quiz: document.getElementById("quizScreen"),
+      result: document.getElementById("resultScreen")
+    };
+
+    const state = {
+      nickname: "",
+      step: 0,
+      pair: null,
+      pairAnswers: Array(8).fill(null),
+      tieAnswers: Array(2).fill(null),
+      resultKey: null,
+      pairScores: null,
+      advancing: false
+    };
+
+    const $ = id => document.getElementById(id);
+    const nickname = $("nickname");
+    const answersEl = $("answers");
+    const toast = $("toast");
+    let toastTimer = null;
+
+    function showScreen(name) {
+      Object.entries(screens).forEach(([key, element]) => {
+        element.classList.toggle("active", key === name);
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function showToast(message) {
+      clearTimeout(toastTimer);
+      toast.textContent = message;
+      toast.classList.add("visible");
+      toastTimer = setTimeout(() => toast.classList.remove("visible"), 2100);
+    }
+
+    function choosePair() {
+      const scores = Object.fromEntries(pairKeys.map(key => [key, 0]));
+      state.pairAnswers.forEach(key => {
+        if (key in scores) scores[key] += 1;
+      });
+      state.pairScores = scores;
+      return pairKeys.reduce((best, key) => {
+        if (scores[key] !== scores[best]) return scores[key] > scores[best] ? key : best;
+        return state.pairAnswers.lastIndexOf(key) > state.pairAnswers.lastIndexOf(best) ? key : best;
+      }, pairKeys[0]);
+    }
+
+    function getCurrentQuestion() {
+      if (state.step < 8) {
+        return {
+          ...GLOBAL_QUESTIONS[state.step],
+          label: "关系底色"
+        };
+      }
+      if (!state.pair) state.pair = choosePair();
+      return {
+        ...TIE_QUESTIONS[state.pair][state.step - 8],
+        label: `人物区分 · ${PAIRS[state.pair].name}`
+      };
+    }
+
+    function renderQuestion() {
+      const question = getCurrentQuestion();
+      const selected = state.step < 8
+        ? state.pairAnswers[state.step]
+        : state.tieAnswers[state.step - 8];
+      const completed = state.pairAnswers.filter(Boolean).length + state.tieAnswers.filter(Boolean).length;
+      const percent = Math.round(completed / 10 * 100);
+
+      $("progressLabel").textContent = `第 ${state.step + 1} 题 / 10`;
+      $("progressPercent").textContent = `${percent}%`;
+      $("progressFill").style.width = `${percent}%`;
+      $("progressTrack").setAttribute("aria-valuenow", String(percent));
+      $("progressTrack").setAttribute("aria-label", `已完成 ${completed} / 10 题`);
+      $("progressTrack").setAttribute("aria-label", `已完成 ${completed} / 10 题`);
+      $("progressPercent").textContent = `${percent}%`;
+      $("backButton").disabled = state.step === 0;
+      $("questionCard").dataset.mark = String(state.step + 1).padStart(2, "0");
+      $("questionLabel").textContent = question.label;
+      $("questionTitle").textContent = question.title;
+      $("phasePill").textContent = state.step < 8 ? "旅程人格阶段" : "人物落点阶段";
+      answersEl.innerHTML = "";
+
+      question.answers.forEach(([text, key], index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `answer${selected === key ? " selected" : ""}`;
+        button.setAttribute("aria-pressed", selected === key ? "true" : "false");
+        button.innerHTML = `
+          <span class="answer-letter">${letters[index]}</span>
+          <span class="answer-text">${text}</span>
+          <span class="answer-check" aria-hidden="true">✓</span>
+        `;
+        button.addEventListener("click", () => answerQuestion(key, button));
+        answersEl.appendChild(button);
+      });
+    }
+
+    function answerQuestion(key, button) {
+      if (state.advancing) return;
+      if (state.step < 8) {
+        state.pairAnswers[state.step] = key;
+      } else {
+        state.tieAnswers[state.step - 8] = key;
+      }
+
+      Array.from(answersEl.children).forEach(element => {
+        element.classList.remove("selected");
+        element.setAttribute("aria-pressed", "false");
+      });
+      button.classList.add("selected");
+      button.setAttribute("aria-pressed", "true");
+
+      const completed = state.pairAnswers.filter(Boolean).length + state.tieAnswers.filter(Boolean).length;
+      const percent = Math.round(completed / 10 * 100);
+      $("progressPercent").textContent = `${percent}%`;
+      $("progressFill").style.width = `${percent}%`;
+      $("progressTrack").setAttribute("aria-valuenow", String(percent));
+
+      state.advancing = true;
+      setTimeout(() => {
+        state.advancing = false;
+        if (state.step === 7) {
+          state.pair = choosePair();
+          state.tieAnswers = Array(2).fill(null);
+          state.step = 8;
+          showToast(`关系底色：${PAIRS[state.pair].name}`);
+          renderQuestion();
+          return;
+        }
+        if (state.step === 9) {
+          showResult();
+          return;
+        }
+        state.step += 1;
+        renderQuestion();
+      }, 300);
+    }
+
+    function startQuiz(forceReset = false) {
+      if (forceReset) {
+        state.step = 0;
+        state.pair = null;
+        state.pairAnswers = Array(8).fill(null);
+        state.tieAnswers = Array(2).fill(null);
+        state.resultKey = null;
+        state.pairScores = null;
+      }
+      state.nickname = nickname.value.trim().slice(0, 16);
+      renderQuestion();
+      showScreen("quiz");
+    }
+
+    function goBack() {
+      if (state.step === 0 || state.advancing) return;
+      state.step -= 1;
+      renderQuestion();
+    }
+
+    function getResultKey() {
+      const pair = state.pair || choosePair();
+      const chars = Object.keys(PEOPLE).filter(key => PEOPLE[key].pair === pair);
+      const [first, second] = chars;
+      const scores = {
+        [first]: state.tieAnswers.filter(key => key === first).length,
+        [second]: state.tieAnswers.filter(key => key === second).length
+      };
+      if (scores[first] !== scores[second]) {
+        return scores[first] > scores[second] ? first : second;
+      }
+      return state.tieAnswers.lastIndexOf(second) > state.tieAnswers.lastIndexOf(first) ? second : first;
+    }
+
+    function showResult(keyFromUrl = null, sharedPairScores = null, sharedTieIndex = 0) {
+      let resultKey = keyFromUrl;
+      if (!resultKey) resultKey = getResultKey();
+      if (!PEOPLE[resultKey]) resultKey = "zhangmeng";
+
+      const person = PEOPLE[resultKey];
+      const pair = PAIRS[person.pair];
+      const counterpart = PEOPLE[person.counter];
+      const pairScores = sharedPairScores || state.pairScores || { care: 2, memory: 2, boundary: 2, battle: 2 };
+      const pairTotal = pairKeys.reduce((sum, key) => sum + Number(pairScores[key] || 0), 0) || 8;
+      const safeName = state.nickname.replace(/[<>&"']/g, "");
+
+      state.resultKey = resultKey;
+      state.pair = person.pair;
+      state.pairScores = pairScores;
+      $("resultKicker").textContent = safeName ? `${safeName}的旅程人物车票` : "你的后会友期人物";
+      $("resultName").textContent = person.name;
+      $("resultType").textContent = person.type;
+      $("resultTagline").textContent = person.tagline;
+      $("resultDescription").textContent = person.description;
+      $("resultHero").style.setProperty("--result-color", person.color);
+      $("resultHero").dataset.initial = person.initial;
+      $("resultTraits").innerHTML = person.traits.map(trait => `<span class="trait"># ${trait}</span>`).join("");
+      $("routeName").textContent = `${pair.name} · ${pair.people}`;
+      $("routeCopy").textContent = person.routeCopy;
+      $("counterpartAvatar").textContent = counterpart.initial;
+      $("counterpartAvatar").style.setProperty("--counter-color", counterpart.color);
+      $("counterpartName").textContent = counterpart.name;
+      $("counterpartCopy").textContent = person.counterCopy;
+
+      $("scoreRows").innerHTML = pairKeys.map(key => {
+        const value = Number(pairScores[key] || 0);
+        const width = Math.round(value / pairTotal * 100);
+        return `
+          <div class="score-row">
+            <span>${PAIRS[key].name.replace("线", "")}</span>
+            <span class="score-track"><span class="score-fill" style="width:${width}%;--row-color:${PAIRS[key].color}"></span></span>
+            <span>${width}%</span>
+          </div>
+        `;
+      }).join("");
+
+      showScreen("result");
+    }
+
+    async function copyText(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (_) {
+        const area = document.createElement("textarea");
+        area.value = text;
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        const copied = document.execCommand("copy");
+        area.remove();
+        return copied;
+      }
+    }
+
+    async function shareResult() {
+      const person = PEOPLE[state.resultKey] || PEOPLE.zhangmeng;
+      const scores = state.pairScores || { care: 2, memory: 2, boundary: 2, battle: 2 };
+      const params = new URLSearchParams({
+        result: state.resultKey || "zhangmeng",
+        s: pairKeys.map(key => scores[key] || 0).join("-")
+      });
+      const url = `${location.origin}${location.pathname}?${params.toString()}`;
+      const data = {
+        title: "芒果《后会友期》人物测试",
+        text: `我的旅程人物是「${person.name}·${person.type}」：${person.tagline} 你像节目里的谁？`,
+        url
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(data);
+          return;
+        } catch (error) {
+          if (error && error.name === "AbortError") return;
+        }
+      }
+
+      const copied = await copyText(`${data.text}\n${url}`);
+      showToast(copied ? "人物车票与链接已复制" : "分享链接生成成功");
+    }
+
+    function resetAll() {
+      state.nickname = "";
+      nickname.value = "";
+      state.step = 0;
+      state.pair = null;
+      state.pairAnswers = Array(8).fill(null);
+      state.tieAnswers = Array(2).fill(null);
+      state.resultKey = null;
+      state.pairScores = null;
+      history.replaceState({}, "", location.pathname);
+      showScreen("landing");
+    }
+
+    $("startButton").addEventListener("click", () => startQuiz(true));
+    nickname.addEventListener("keydown", event => {
+      if (event.key === "Enter") startQuiz(true);
+    });
+    $("backButton").addEventListener("click", goBack);
+    $("shareButton").addEventListener("click", shareResult);
+    $("restartButton").addEventListener("click", resetAll);
+
+    document.addEventListener("keydown", event => {
+      if (!screens.quiz.classList.contains("active") || state.advancing) return;
+      const index = letters.indexOf(event.key.toUpperCase());
+      if (index >= 0) answersEl.children[index]?.click();
+    });
+
+    const params = new URLSearchParams(location.search);
+    const resultFromUrl = params.get("result");
+    if (resultFromUrl && PEOPLE[resultFromUrl]) {
+      const sharedValues = (params.get("s") || "")
+        .split("-")
+        .map(Number);
+      const sharedScores = sharedValues.length === 4 && sharedValues.every(value => Number.isFinite(value) && value >= 0)
+        ? Object.fromEntries(pairKeys.map((key, index) => [key, sharedValues[index]]))
+        : null;
+      $("restartButton").textContent = "我也来测";
+      showResult(resultFromUrl, sharedScores);
+    }
+  </script>
+</body>
+</html>
